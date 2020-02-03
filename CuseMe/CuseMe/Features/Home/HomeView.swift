@@ -87,11 +87,9 @@ class HomeView: UIViewController {
     
     // MARK: IBActions
     @IBAction private func lockButtonDidTap(_ sender: UIButton) {
-        /*
-         let dvc = UIStoryboard(name: "Manage", bundle: nil).instantiateViewController(withIdentifier: "UnlockView") as! UnlockView
+         let dvc = UIStoryboard(name: "Settings", bundle: nil).instantiateViewController(withIdentifier: "AuthView") as! AuthView
          dvc.modalPresentationStyle = .fullScreen
          self.present(dvc, animated: true)
-         */
     }
     
     @IBAction private func orderButtonDidTap(_ sender: UIButton) {

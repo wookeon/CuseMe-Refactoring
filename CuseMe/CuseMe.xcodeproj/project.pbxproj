@@ -25,7 +25,11 @@
 		F50C475623E8003D00905E6F /* TTSService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F50C475523E8003D00905E6F /* TTSService.swift */; };
 		F50C475A23E802CB00905E6F /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F50C475923E802CB00905E6F /* UIColor+Extensions.swift */; };
 		F50C475D23E8170B00905E6F /* AVPlayer+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F50C475C23E8170B00905E6F /* AVPlayer+Extensions.swift */; };
-		F50C475F23E81B4700905E6F /* Manage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F50C475E23E81B4700905E6F /* Manage.storyboard */; };
+		F50C475F23E81B4700905E6F /* Admin.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F50C475E23E81B4700905E6F /* Admin.storyboard */; };
+		F50C476223E8223600905E6F /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F50C476123E8223600905E6F /* Settings.storyboard */; };
+		F50C476423E8477500905E6F /* AuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F50C476323E8477500905E6F /* AuthView.swift */; };
+		F50C476623E8583B00905E6F /* PreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F50C476523E8583B00905E6F /* PreviewView.swift */; };
+		F50C476823E8587600905E6F /* AdminTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F50C476723E8587600905E6F /* AdminTabBarController.swift */; };
 		F5129DFD23E7EBA50069C754 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5129DFC23E7EBA50069C754 /* AppDelegate.swift */; };
 		F5129E0623E7EBA70069C754 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F5129E0523E7EBA70069C754 /* Assets.xcassets */; };
 		F5129E0923E7EBA70069C754 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F5129E0723E7EBA70069C754 /* LaunchScreen.storyboard */; };
@@ -52,7 +56,11 @@
 		F50C475523E8003D00905E6F /* TTSService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TTSService.swift; sourceTree = "<group>"; };
 		F50C475923E802CB00905E6F /* UIColor+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
 		F50C475C23E8170B00905E6F /* AVPlayer+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AVPlayer+Extensions.swift"; sourceTree = "<group>"; };
-		F50C475E23E81B4700905E6F /* Manage.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Manage.storyboard; sourceTree = "<group>"; };
+		F50C475E23E81B4700905E6F /* Admin.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Admin.storyboard; sourceTree = "<group>"; };
+		F50C476123E8223600905E6F /* Settings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
+		F50C476323E8477500905E6F /* AuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = "<group>"; };
+		F50C476523E8583B00905E6F /* PreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewView.swift; sourceTree = "<group>"; };
+		F50C476723E8587600905E6F /* AdminTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminTabBarController.swift; sourceTree = "<group>"; };
 		F5129DF923E7EBA50069C754 /* CuseMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CuseMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F5129DFC23E7EBA50069C754 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F5129E0523E7EBA70069C754 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -163,12 +171,23 @@
 			path = Utils;
 			sourceTree = "<group>";
 		};
-		F50C475B23E803DB00905E6F /* Manage */ = {
+		F50C475B23E803DB00905E6F /* Admin */ = {
 			isa = PBXGroup;
 			children = (
-				F50C475E23E81B4700905E6F /* Manage.storyboard */,
+				F50C475E23E81B4700905E6F /* Admin.storyboard */,
+				F50C476723E8587600905E6F /* AdminTabBarController.swift */,
+				F50C476523E8583B00905E6F /* PreviewView.swift */,
 			);
-			path = Manage;
+			path = Admin;
+			sourceTree = "<group>";
+		};
+		F50C476023E8222700905E6F /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				F50C476123E8223600905E6F /* Settings.storyboard */,
+				F50C476323E8477500905E6F /* AuthView.swift */,
+			);
+			path = Settings;
 			sourceTree = "<group>";
 		};
 		F5129DF023E7EBA50069C754 = {
@@ -215,7 +234,8 @@
 			children = (
 				F5129E1223E7EC4E0069C754 /* Splash */,
 				F50C474923E7F1C900905E6F /* Home */,
-				F50C475B23E803DB00905E6F /* Manage */,
+				F50C475B23E803DB00905E6F /* Admin */,
+				F50C476023E8222700905E6F /* Settings */,
 			);
 			path = Features;
 			sourceTree = "<group>";
@@ -295,7 +315,8 @@
 				F5129E0923E7EBA70069C754 /* LaunchScreen.storyboard in Resources */,
 				F5129E0623E7EBA70069C754 /* Assets.xcassets in Resources */,
 				F5129E1423E7ED370069C754 /* Splash.storyboard in Resources */,
-				F50C475F23E81B4700905E6F /* Manage.storyboard in Resources */,
+				F50C475F23E81B4700905E6F /* Admin.storyboard in Resources */,
+				F50C476223E8223600905E6F /* Settings.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -355,7 +376,10 @@
 				F50C474023E7EFAE00905E6F /* Card.swift in Sources */,
 				F50C474623E7F01900905E6F /* Requestable.swift in Sources */,
 				F50C475223E7FC8700905E6F /* UIView+Extensions.swift in Sources */,
+				F50C476823E8587600905E6F /* AdminTabBarController.swift in Sources */,
+				F50C476623E8583B00905E6F /* PreviewView.swift in Sources */,
 				F50C474D23E7F1F300905E6F /* HomeView.swift in Sources */,
+				F50C476423E8477500905E6F /* AuthView.swift in Sources */,
 				F50C473C23E7EF6C00905E6F /* ResponseObject.swift in Sources */,
 				F50C475D23E8170B00905E6F /* AVPlayer+Extensions.swift in Sources */,
 				F5129DFD23E7EBA50069C754 /* AppDelegate.swift in Sources */,
