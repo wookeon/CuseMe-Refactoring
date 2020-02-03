@@ -26,10 +26,13 @@
 		F50C475A23E802CB00905E6F /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F50C475923E802CB00905E6F /* UIColor+Extensions.swift */; };
 		F50C475D23E8170B00905E6F /* AVPlayer+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F50C475C23E8170B00905E6F /* AVPlayer+Extensions.swift */; };
 		F50C475F23E81B4700905E6F /* Admin.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F50C475E23E81B4700905E6F /* Admin.storyboard */; };
-		F50C476223E8223600905E6F /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F50C476123E8223600905E6F /* Settings.storyboard */; };
+		F50C476223E8223600905E6F /* Setting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F50C476123E8223600905E6F /* Setting.storyboard */; };
 		F50C476423E8477500905E6F /* AuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F50C476323E8477500905E6F /* AuthView.swift */; };
 		F50C476623E8583B00905E6F /* PreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F50C476523E8583B00905E6F /* PreviewView.swift */; };
 		F50C476823E8587600905E6F /* AdminTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F50C476723E8587600905E6F /* AdminTabBarController.swift */; };
+		F50C476B23E87AA600905E6F /* DownloadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F50C476A23E87AA600905E6F /* DownloadView.swift */; };
+		F50C476D23E87B0600905E6F /* CreateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F50C476C23E87B0600905E6F /* CreateView.swift */; };
+		F50C476F23E87B0D00905E6F /* Detail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F50C476E23E87B0D00905E6F /* Detail.storyboard */; };
 		F5129DFD23E7EBA50069C754 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5129DFC23E7EBA50069C754 /* AppDelegate.swift */; };
 		F5129E0623E7EBA70069C754 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F5129E0523E7EBA70069C754 /* Assets.xcassets */; };
 		F5129E0923E7EBA70069C754 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F5129E0723E7EBA70069C754 /* LaunchScreen.storyboard */; };
@@ -57,10 +60,13 @@
 		F50C475923E802CB00905E6F /* UIColor+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
 		F50C475C23E8170B00905E6F /* AVPlayer+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AVPlayer+Extensions.swift"; sourceTree = "<group>"; };
 		F50C475E23E81B4700905E6F /* Admin.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Admin.storyboard; sourceTree = "<group>"; };
-		F50C476123E8223600905E6F /* Settings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
+		F50C476123E8223600905E6F /* Setting.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Setting.storyboard; sourceTree = "<group>"; };
 		F50C476323E8477500905E6F /* AuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = "<group>"; };
 		F50C476523E8583B00905E6F /* PreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewView.swift; sourceTree = "<group>"; };
 		F50C476723E8587600905E6F /* AdminTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminTabBarController.swift; sourceTree = "<group>"; };
+		F50C476A23E87AA600905E6F /* DownloadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadView.swift; sourceTree = "<group>"; };
+		F50C476C23E87B0600905E6F /* CreateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateView.swift; sourceTree = "<group>"; };
+		F50C476E23E87B0D00905E6F /* Detail.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Detail.storyboard; sourceTree = "<group>"; };
 		F5129DF923E7EBA50069C754 /* CuseMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CuseMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F5129DFC23E7EBA50069C754 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F5129E0523E7EBA70069C754 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -181,13 +187,23 @@
 			path = Admin;
 			sourceTree = "<group>";
 		};
-		F50C476023E8222700905E6F /* Settings */ = {
+		F50C476023E8222700905E6F /* Setting */ = {
 			isa = PBXGroup;
 			children = (
-				F50C476123E8223600905E6F /* Settings.storyboard */,
+				F50C476123E8223600905E6F /* Setting.storyboard */,
 				F50C476323E8477500905E6F /* AuthView.swift */,
+				F50C476A23E87AA600905E6F /* DownloadView.swift */,
 			);
-			path = Settings;
+			path = Setting;
+			sourceTree = "<group>";
+		};
+		F50C476923E87A9300905E6F /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				F50C476E23E87B0D00905E6F /* Detail.storyboard */,
+				F50C476C23E87B0600905E6F /* CreateView.swift */,
+			);
+			path = Detail;
 			sourceTree = "<group>";
 		};
 		F5129DF023E7EBA50069C754 = {
@@ -232,10 +248,11 @@
 		F5129E1123E7EC380069C754 /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				F50C476923E87A9300905E6F /* Detail */,
 				F5129E1223E7EC4E0069C754 /* Splash */,
 				F50C474923E7F1C900905E6F /* Home */,
 				F50C475B23E803DB00905E6F /* Admin */,
-				F50C476023E8222700905E6F /* Settings */,
+				F50C476023E8222700905E6F /* Setting */,
 			);
 			path = Features;
 			sourceTree = "<group>";
@@ -313,10 +330,11 @@
 				F50C473523E7EF0B00905E6F /* wave.json in Resources */,
 				F50C474B23E7F1E400905E6F /* Home.storyboard in Resources */,
 				F5129E0923E7EBA70069C754 /* LaunchScreen.storyboard in Resources */,
+				F50C476F23E87B0D00905E6F /* Detail.storyboard in Resources */,
 				F5129E0623E7EBA70069C754 /* Assets.xcassets in Resources */,
 				F5129E1423E7ED370069C754 /* Splash.storyboard in Resources */,
 				F50C475F23E81B4700905E6F /* Admin.storyboard in Resources */,
-				F50C476223E8223600905E6F /* Settings.storyboard in Resources */,
+				F50C476223E8223600905E6F /* Setting.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -369,6 +387,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F50C476D23E87B0600905E6F /* CreateView.swift in Sources */,
 				F50C474423E7F00A00905E6F /* APIManager.swift in Sources */,
 				F50C475423E7FFD000905E6F /* CardService.swift in Sources */,
 				F50C474823E7F03700905E6F /* Token.swift in Sources */,
@@ -387,6 +406,7 @@
 				F50C475A23E802CB00905E6F /* UIColor+Extensions.swift in Sources */,
 				F50C475623E8003D00905E6F /* TTSService.swift in Sources */,
 				F5129E1623E7EDE90069C754 /* SplashView.swift in Sources */,
+				F50C476B23E87AA600905E6F /* DownloadView.swift in Sources */,
 				F50C473E23E7EF7700905E6F /* ResponseArray.swift in Sources */,
 				F50C474223E7EFF500905E6F /* AuthService.swift in Sources */,
 			);

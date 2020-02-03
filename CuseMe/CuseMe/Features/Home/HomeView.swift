@@ -87,7 +87,7 @@ class HomeView: UIViewController {
     
     // MARK: IBActions
     @IBAction private func lockButtonDidTap(_ sender: UIButton) {
-         let dvc = UIStoryboard(name: "Settings", bundle: nil).instantiateViewController(withIdentifier: "AuthView") as! AuthView
+         let dvc = UIStoryboard(name: "Setting", bundle: nil).instantiateViewController(withIdentifier: "AuthView") as! AuthView
          dvc.modalPresentationStyle = .fullScreen
          self.present(dvc, animated: true)
     }

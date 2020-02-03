@@ -122,6 +122,21 @@
             </objects>
             <point key="canvasLocation" x="2068" y="504.67980295566502"/>
         </scene>
+        <!--Download View-->
+        <scene sceneID="mel-O8-1ZA">
+            <objects>
+                <viewController storyboardIdentifier="DownloadView" id="0Vb-T0-baw" customClass="DownloadView" customModule="CuseMe" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="78X-9T-Xoq">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="K7O-kt-NWj"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kNn-Zo-uOS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2855" y="503"/>
+        </scene>
     </scenes>
     <resources>
         <image name="closeImage" width="28" height="28"/>

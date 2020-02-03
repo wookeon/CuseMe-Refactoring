@@ -13,7 +13,7 @@ class AuthView: UIViewController {
     // MARK: Variables
     private var authService = AuthService()
 
-    // MARK: ViewController Lifecycle
+    // MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -31,11 +31,11 @@ class AuthView: UIViewController {
     }
     
     // MARK: IBActions
-    @IBAction func closeButtonDidTap(_ sender: Any) {
-        self.dismiss(animated: true)
+    @IBAction private func closeButtonDidTap(_ sender: Any) {
+        dismiss(animated: true)
     }
     
-    @IBAction func unlockButtonDidTap(_ sender: Any) {
+    @IBAction private func unlockButtonDidTap(_ sender: Any) {
         guard let password = passwordTextField.text else { return }
         
         authService.admin(password: password) { [weak self] response, error in
@@ -60,15 +60,15 @@ class AuthView: UIViewController {
     }
     
     // MARK: IBOutlets
-    @IBOutlet weak var unlockButton: UIButton!
-    @IBOutlet weak var passwordTextField: UITextField!
-    @IBOutlet weak var wrongLabel: UILabel!
-    @IBOutlet weak var inputViewCenterY: NSLayoutConstraint!
+    @IBOutlet private weak var unlockButton: UIButton!
+    @IBOutlet private weak var passwordTextField: UITextField!
+    @IBOutlet private weak var wrongLabel: UILabel!
+    @IBOutlet private weak var inputViewCenterY: NSLayoutConstraint!
 }
 
 // MARK: Extensions
 extension AuthView {
-    @objc func keyboardWillShow(_ notification: NSNotification) {
+    @objc private func keyboardWillShow(_ notification: NSNotification) {
         
         guard let duration = notification.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? Double else { return }
         guard let curve = notification.userInfo?[UIResponder.keyboardAnimationCurveUserInfoKey] as? UInt else { return }
@@ -80,7 +80,7 @@ extension AuthView {
         self.view.layoutIfNeeded()
     }
     
-    @objc func keyboardWillHide(_ notification: NSNotification) {
+    @objc private func keyboardWillHide(_ notification: NSNotification) {
         guard let duration = notification.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? Double else {return}
         guard let curve = notification.userInfo?[UIResponder.keyboardAnimationCurveUserInfoKey] as? UInt else {return}
         
