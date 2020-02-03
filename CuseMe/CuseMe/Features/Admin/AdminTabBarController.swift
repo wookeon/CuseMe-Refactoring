@@ -23,50 +23,33 @@ class AdminTabBarController: UITabBarController {
     override func updateViewConstraints() {
         super.updateViewConstraints()
         
-        self.view.addSubview(blurView)
-        blurView.frame.origin.x = 0
-        blurView.frame.origin.y = 0
-        blurView.frame.size.width = screenWidth
-        if screenHeight > 736 {
-            blurView.frame.size.height = screenHeight - 83
-        } else {
-            blurView.frame.size.height = screenHeight - 49
-        }
+        [blurView, menuButton, createButton, createLabel, downloadButton, downloadLabel].forEach { view.addSubview($0) }
+        [menuButton, createButton, downloadButton].forEach { $0.size(width: 58, height: 58) }
+        [createLabel, downloadLabel].forEach { $0.size(width: 65, height: 15) }
+
+        blurView.origin(x: 0, y: 0)
+        blurView.size(width: screenWidth, height: screenHeight - tabBar.frame.height)
         blurView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(blurViewDidTap)))
+
+        let menuButtonOriginX = screenWidth/2 - menuButton.frame.width/2
+        let menuButtonOriginY = screenHeight - tabBar.frame.height - 19
+        menuButton.origin(x: menuButtonOriginX, y: menuButtonOriginY)
         
-        self.view.addSubview(menuButton)
-        menuButton.frame.size.width = 58
-        menuButton.frame.size.height = 58
-        menuButton.frame.origin.x = screenWidth/2 - menuButton.frame.width/2
-        if screenHeight > 736 {
-            menuButton.frame.origin.y = screenHeight - menuButton.frame.height - 44
-        } else {
-            menuButton.frame.origin.y = screenHeight - menuButton.frame.height - 12
-        }
+        let createButtonOriginX = screenWidth/2 - menuButton.frame.width/2
+        let createButtonOriginY = menuButton.frame.origin.y - menuButton.frame.height
+        createButton.origin(x: createButtonOriginX, y: createButtonOriginY)
         
-        self.view.addSubview(createButton)
-        createButton.frame.size.width = menuButton.frame.width
-        createButton.frame.size.height = menuButton.frame.height
-        createButton.frame.origin.x = menuButton.frame.origin.x
-        createButton.frame.origin.y = menuButton.frame.origin.y - menuButton.frame.height
+        let createLabelOriginX = createButton.frame.origin.x + createButton.frame.width + 10
+        let createLabelOriginY = createButton.frame.origin.y + createButton.frame.height/2 - 8
+        createLabel.origin(x: createLabelOriginX, y: createLabelOriginY)
         
-        self.view.addSubview(createLabel)
-        createLabel.frame.size.width = 65
-        createLabel.frame.size.height = 15
-        createLabel.frame.origin.x = createButton.frame.origin.x + createButton.frame.width + 10
-        createLabel.frame.origin.y = createButton.frame.origin.y + createButton.frame.height/2 - 8
+        let downloadButtonOriginX = screenWidth/2 - menuButton.frame.width/2
+        let downloadButtonOriginY = createButton.frame.origin.y - menuButton.frame.height - 6
+        downloadButton.origin(x: downloadButtonOriginX, y: downloadButtonOriginY)
         
-        self.view.addSubview(downloadButton)
-        downloadButton.frame.size.width = menuButton.frame.width
-        downloadButton.frame.size.height = menuButton.frame.height
-        downloadButton.frame.origin.x = menuButton.frame.origin.x
-        downloadButton.frame.origin.y = createButton.frame.origin.y - menuButton.frame.height - 6
-        
-        self.view.addSubview(downloadLabel)
-        downloadLabel.frame.size.width = 65
-        downloadLabel.frame.size.height = 15
-        downloadLabel.frame.origin.x = downloadButton.frame.origin.x + downloadButton.frame.width + 10
-        downloadLabel.frame.origin.y = downloadButton.frame.origin.y + downloadButton.frame.height/2 - 8
+        let downloadLabelOriginX = downloadButton.frame.origin.x + downloadButton.frame.width + 10
+        let downloadLabelOriginY = downloadButton.frame.origin.y + downloadButton.frame.height/2 - 8
+        downloadLabel.origin(x: downloadLabelOriginX, y: downloadLabelOriginY)
     }
     
     // MARK: @objc
@@ -136,7 +119,7 @@ class AdminTabBarController: UITabBarController {
     }
     
     private let blurView = UIView().then {
-        $0.backgroundColor = UIColor.white
+        $0.backgroundColor = UIColor.blur
         $0.alpha = 0
         $0.isUserInteractionEnabled = true
     }
@@ -145,38 +128,36 @@ class AdminTabBarController: UITabBarController {
     private func showSubMenus() {
         UIView.animate(withDuration: 0.2, delay: 0, options: [.curveEaseIn], animations: {
             self.menuButton.transform = CGAffineTransform(rotationAngle: .pi/4)
-            self.blurView.alpha = 0.8
-            self.createButton.alpha = 1
-            self.createLabel.alpha = 1
-            self.createButton.transform = CGAffineTransform(translationX: 0, y: -6)
-            self.createLabel.transform = CGAffineTransform(translationX: 0, y: -6)
+            [self.blurView, self.createButton, self.createLabel].forEach {
+                $0.alpha = 1
+                if $0 != self.blurView {
+                    $0.transform = CGAffineTransform(translationX: 0, y: -6)
+                }
+            }
         }, completion: nil)
         
         UIView.animate(withDuration: 0.2, delay: 0.1, options: [.curveEaseIn], animations: {
-            self.downloadButton.alpha = 1
-            self.downloadLabel.alpha = 1
-            self.downloadButton.transform = CGAffineTransform(translationX: 0, y: -6)
-            self.downloadLabel.transform = CGAffineTransform(translationX: 0, y: -6)
+            [self.downloadButton, self.downloadLabel].forEach {
+                $0.alpha = 1
+                $0.transform = CGAffineTransform(translationX: 0, y: -6)
+            }
         }, completion: nil)
     }
     
     private func hideSubMenus() {
         UIView.animate(withDuration: 0.2, delay: 0, options: [.curveEaseOut], animations: {
             self.menuButton.transform = CGAffineTransform.identity
-            self.blurView.alpha = 0
-            self.downloadButton.alpha = 0
-            self.downloadLabel.alpha = 0
-            
-            self.downloadButton.transform = CGAffineTransform(translationX: 0, y: 0)
-            self.downloadLabel.transform = CGAffineTransform(translationX: 0, y: 0)
+            [self.blurView, self.downloadButton, self.downloadLabel].forEach {
+                $0.alpha = 0
+                $0.transform = CGAffineTransform(translationX: 0, y: 0)
+            }
         }, completion: nil)
         
         UIView.animate(withDuration: 0.2, delay: 0.1, options: [.curveEaseOut], animations: {
-            self.createButton.alpha = 0
-            self.createLabel.alpha = 0
-            
-            self.createButton.transform = CGAffineTransform(translationX: 0, y: 0)
-            self.createLabel.transform = CGAffineTransform(translationX: 0, y: 0)
+            [self.createButton, self.createLabel].forEach {
+                $0.alpha = 0
+                $0.transform = CGAffineTransform(translationX: 0, y: 0)
+            }
         }, completion: nil)
     }
 }

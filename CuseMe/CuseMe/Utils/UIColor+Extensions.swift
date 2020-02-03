@@ -17,4 +17,8 @@ extension UIColor {
     @nonobjc class var placeholder: UIColor {
         return UIColor(red: 178/255, green: 178/255, blue: 178/255, alpha: 1.0)
     }
+    
+    @nonobjc class var blur: UIColor {
+        return UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 0.8)
+    }
 }

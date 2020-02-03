@@ -60,7 +60,7 @@
                                             <constraint firstAttribute="height" constant="20" id="hvZ-Rt-abK"/>
                                         </constraints>
                                     </imageView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zqx-wa-NJz">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zqx-wa-NJz">
                                         <rect key="frame" x="24" y="8" width="33" height="33"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="33" id="Z8I-aF-T6y"/>
@@ -71,7 +71,7 @@
                                             <action selector="lockButtonDidTap:" destination="Rap-Jk-ehl" eventType="touchUpInside" id="Zi7-Po-J5i"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4d3-Z0-LY3">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4d3-Z0-LY3">
                                         <rect key="frame" x="318" y="8" width="33" height="33"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="33" id="czq-79-6E1"/>

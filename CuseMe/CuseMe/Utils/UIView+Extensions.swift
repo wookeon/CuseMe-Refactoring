@@ -43,4 +43,14 @@ extension UIView {
             layer.borderWidth = 0
         }
     }
+    
+    func origin(x: CGFloat, y: CGFloat) {
+        frame.origin.x = x
+        frame.origin.y = y
+    }
+    
+    func size(width: CGFloat, height: CGFloat) {
+        frame.size.width = width
+        frame.size.height = height
+    }
 }
