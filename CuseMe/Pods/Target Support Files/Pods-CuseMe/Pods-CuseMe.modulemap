@@ -1,0 +1,6 @@
+framework module Pods_CuseMe {
+  umbrella header "Pods-CuseMe-umbrella.h"
+
+  export *
+  module * { export * }
+}
