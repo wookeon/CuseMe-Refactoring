@@ -36,9 +36,6 @@ class PreviewEditView: UIViewController {
 
     // MARK: IBActions
     @IBAction func closeButtonDidTap(_ sender: Any) {
-        var test: [Test] = cards.map {
-            Test(cardIdx: $0.cardIdx, visible: $0.visible, sequence: $0.sequence)
-        }
         // TODO: 카드 수정 로직 완성
         // TODO: 드래그 앤 드롭으로 카드 위치 수정
         cardService.editCards(cards: cards) { [weak self] response, error in

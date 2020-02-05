@@ -23,6 +23,8 @@ class CardService: APIManager, Requestable {
             "uuid": "\(uuid)"
         ]
         
+        print(body)
+        
         postable(url: url, type: ResponseArray<Card>.self, body: body, header: header) {
             (response, error) in
             
@@ -79,26 +81,20 @@ class CardService: APIManager, Requestable {
     // 카드 전체 수정
     func editCards(cards: [Card], completion: @escaping (ResponseArray<EditCard>?, Error?) -> Void) {
         
-        let url = Self.setURL("/cards/")
+        let url = Self.setURL("/cards")
         let token = UserDefaults.standard.string(forKey: "token") ?? ""
         let header: HTTPHeaders = [
             "Content-Type" : "application/json",
             "token" : "\(token)"
         ]
         
-        var json: Data?
-        do {
-            let result = try JSONEncoder().encode(cards)
-            let jsonString = String(data: result, encoding: .utf8)
-            print(jsonString)
-            json = result
-        } catch (let error) {
-            print("catch: \(error.localizedDescription)")
-        }
-            
+        let cards = cards.map { Test(cardIdx: $0.cardIdx, visible: $0.visible, sequence: $0.sequence) }
+        
         let body: Parameters = [
-            "updateArr" : "\(json)"
+            "updateArr": "\(cards)"
         ]
+        
+        print(body)
         
         putalbe(url: url, type: ResponseArray<EditCard>.self, body: body, header: header) {
             (response, error) in
@@ -111,3 +107,4 @@ class CardService: APIManager, Requestable {
         }
     }
 }
+
