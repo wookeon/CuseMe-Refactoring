@@ -121,19 +121,29 @@
                                             <rect key="frame" x="0.0" y="0.0" width="157" height="181"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3fN-2t-EHV">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3fN-2t-EHV">
                                                     <rect key="frame" x="0.0" y="0.0" width="157" height="142"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cI0-R5-YpG">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cI0-R5-YpG">
                                                     <rect key="frame" x="12" y="153" width="133" height="19"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="19" id="9iP-Ir-DDY"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
                                                     <color key="textColor" red="0.29019607843137252" green="0.29019607843137252" blue="0.29019607843137252" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="cI0-R5-YpG" secondAttribute="trailing" constant="12" id="B1C-cZ-UaX"/>
+                                                <constraint firstAttribute="trailing" secondItem="3fN-2t-EHV" secondAttribute="trailing" id="D6W-HF-ZS0"/>
+                                                <constraint firstItem="3fN-2t-EHV" firstAttribute="leading" secondItem="Dw4-fm-OkT" secondAttribute="leading" id="JmN-nN-pL0"/>
+                                                <constraint firstAttribute="bottom" secondItem="cI0-R5-YpG" secondAttribute="bottom" constant="9" id="UMG-qi-fMX"/>
+                                                <constraint firstItem="cI0-R5-YpG" firstAttribute="leading" secondItem="Dw4-fm-OkT" secondAttribute="leading" constant="12" id="b5j-I2-yMx"/>
+                                                <constraint firstItem="cI0-R5-YpG" firstAttribute="top" secondItem="3fN-2t-EHV" secondAttribute="bottom" constant="11" id="c0N-Hk-qoG"/>
+                                                <constraint firstItem="3fN-2t-EHV" firstAttribute="top" secondItem="Dw4-fm-OkT" secondAttribute="top" id="gWq-DA-3mw"/>
+                                            </constraints>
                                         </collectionViewCellContentView>
                                         <connections>
                                             <outlet property="cardImageView" destination="3fN-2t-EHV" id="Xj2-SJ-5Nh"/>
@@ -163,7 +173,7 @@
                         <outlet property="lockButton" destination="zqx-wa-NJz" id="5Gs-WT-ZwA"/>
                         <outlet property="orderButton" destination="4d3-Z0-LY3" id="LVM-ZI-AXO"/>
                         <outlet property="rightQuoteImageView" destination="GkJ-bP-3it" id="es4-Kh-fxh"/>
-                        <outlet property="waveLottieView" destination="mi9-wZ-eO2" id="8xp-bg-MtJ"/>
+                        <outlet property="waveAnimationView" destination="mi9-wZ-eO2" id="Whg-gR-OWt"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3EJ-hO-TlC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

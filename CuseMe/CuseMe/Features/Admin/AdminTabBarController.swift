@@ -11,7 +11,7 @@ import Then
 
 class AdminTabBarController: UITabBarController {
     
-    // MARK: Variables
+    // MARK: Variable
     private let screenWidth = UIScreen.main.bounds.width
     private let screenHeight = UIScreen.main.bounds.height
     
@@ -28,7 +28,7 @@ class AdminTabBarController: UITabBarController {
         [createLabel, downloadLabel].forEach { $0.size(width: 65, height: 15) }
 
         blurView.origin(x: 0, y: 0)
-        blurView.size(width: screenWidth, height: screenHeight - tabBar.frame.height)
+        blurView.size(width: screenWidth, height: screenHeight)
         blurView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(blurViewDidTap)))
 
         let menuButtonOriginX = screenWidth/2 - menuButton.frame.width/2
@@ -74,7 +74,6 @@ class AdminTabBarController: UITabBarController {
     }
     
     @objc func blurViewDidTap() {
-        print("blurViewDidTap")
         hideSubMenus()
     }
     
@@ -124,7 +123,7 @@ class AdminTabBarController: UITabBarController {
         $0.isUserInteractionEnabled = true
     }
     
-    // MARK: function
+    // MARK: Function
     private func showSubMenus() {
         UIView.animate(withDuration: 0.2, delay: 0, options: [.curveEaseIn], animations: {
             self.menuButton.transform = CGAffineTransform(rotationAngle: .pi/4)

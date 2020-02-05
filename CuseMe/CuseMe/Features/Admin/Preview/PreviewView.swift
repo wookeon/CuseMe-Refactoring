@@ -1,5 +1,5 @@
 //
-//  HomeView.swift
+//  PreviewView.swift
 //  CuseMe
 //
 //  Created by wookeon on 2020/02/03.
@@ -13,8 +13,8 @@ import SnapKit
 import Then
 import UIKit
 
-
-class HomeView: UIViewController {
+class PreviewView: UIViewController {
+    
     // MARK: Variable
     private var player = AVPlayer()
     private var playerItem: AVPlayerItem?
@@ -24,24 +24,20 @@ class HomeView: UIViewController {
     
     private var cardService = CardService()
     private var cards = [Card]()
-    private var originCards = [Card]()
     
     private var prevCell: HomeCardCell?
-    private var orderBy = 0
     
     // MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         cardCollectionView.delegate = self
         cardCollectionView.dataSource = self
-        
-     
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+
         cardService.visibleCards() { [weak self] response, error in
             guard let self = self else { return }
             guard let response = response else { return }
@@ -49,7 +45,6 @@ class HomeView: UIViewController {
             if response.success {
                 // TODO: 세이프 옵셔널 바인딩
                 self.cards = response.data!
-                self.originCards = self.cards
                 
                 self.cardCollectionView.reloadData()
             } else {
@@ -68,9 +63,9 @@ class HomeView: UIViewController {
         
         waveAnimationView.play()
         waveAnimationView.loopMode = .loop
-        waveAnimationView.contentMode = .scaleToFill
+        doneButton.cornerRadius(cornerRadii: nil)
         cardCollectionView.cornerRadius(cornerRadii: 20)
-
+        
         [emptyImageView, emptyLabel].forEach { view.addSubview($0) }
         emptyImageView.snp.makeConstraints {
             $0.width.equalTo(self.view.snp.width).multipliedBy(0.75)
@@ -87,43 +82,30 @@ class HomeView: UIViewController {
     }
     
     // MARK: IBActions
-    @IBAction private func lockButtonDidTap(_ sender: UIButton) {
-         let dvc = UIStoryboard(name: "Setting", bundle: nil).instantiateViewController(withIdentifier: "AuthView") as! AuthView
-         dvc.modalPresentationStyle = .fullScreen
-         self.present(dvc, animated: true)
+    @IBAction private func doneButtonDidTap(_ sender: UIButton) {
+        dismiss(animated: true)
     }
-    
-    @IBAction private func orderButtonDidTap(_ sender: UIButton) {
-        if prevCell != nil { prevCell?.layer.borderWidth = 0 }
-        prevCell = nil
-        
-        orderBy += 1
-        orderBy %= 3
-        
-        if orderBy == 0 {
-            cards = originCards
-        } else if orderBy == 1 {
-            cards = cards.sorted { $0.count > $1.count }
-        } else if orderBy == 2 {
-            cards = cards.sorted { $0.title < $1.title }
-        }
-
-        cardCollectionView.reloadData()
+    @IBAction func editButtonDidTap(_ sender: UIButton) {
+        let dvc = UIStoryboard(name: "Admin", bundle: nil).instantiateViewController(withIdentifier: "PreviewEditView") as! PreviewEditView
+        dvc.modalPresentationStyle = .fullScreen
+        // TODO: delegate 로 다음 뷰에 전달
+        dvc.cards = cards
+        self.present(dvc, animated: true)
     }
     
     // MARK: IBOutlets
     @IBOutlet private weak var leftQuoteImageView: UIImageView!
     @IBOutlet private weak var rightQuoteImageView: UIImageView!
     @IBOutlet private weak var waveAnimationView: AnimationView!
-    @IBOutlet private weak var lockButton: UIButton!
-    @IBOutlet private weak var orderButton: UIButton!
+    @IBOutlet private weak var doneButton: UIButton!
+    @IBOutlet private weak var editButton: UIButton!
     @IBOutlet private weak var contentLabel: UILabel!
     @IBOutlet private weak var cardCollectionView: UICollectionView!
     
     // MARK: UI
-    private let emptyImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 239, height: 239)).then {
-        $0.image = UIImage(named: "HomeCardEmptyImage")
-        $0.contentMode = .scaleToFill
+    private let emptyImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 275, height: 236)).then {
+        $0.image = UIImage(named: "PreviewCardEmptyImage")
+        $0.contentMode = .scaleAspectFit
         $0.isHidden = true
     }
     
@@ -131,7 +113,7 @@ class HomeView: UIViewController {
         $0.textAlignment = .center
         $0.textColor = .placeholder
         $0.numberOfLines = 2
-        $0.text = "관리자 모드로 들어가려면\n왼쪽 상단의 자물쇠 버튼을 누르세요."
+        $0.text = "카드가 보여지게 하려면\n카드 관리 탭으로 이동하세요."
         $0.font = UIFont.systemFont(ofSize: 16, weight: .light)
         $0.adjustsFontSizeToFitWidth = true
         $0.isHidden = true
@@ -145,7 +127,7 @@ class HomeView: UIViewController {
 }
 
 // MARK: Extension
-extension HomeView: UICollectionViewDelegate {
+extension PreviewView: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard !synthesizer.isSpeaking && !player.isPlaying else { return }
         
@@ -159,16 +141,6 @@ extension HomeView: UICollectionViewDelegate {
         leftQuoteImageView.isHidden = false
         rightQuoteImageView.isHidden = false
         contentLabel.text = card.content
-        
-        cardService.increaseCount(cardIdx: card.cardIdx) { [weak self] response, error in
-            guard let self = self else { return }
-            guard let response = response else { return }
-            
-            if response.success {
-                self.cards[indexPath.row].count += 1
-                self.originCards = self.cards
-            }
-        }
         
         if let recordURL = card.recordURL {
             let url = URL(string: recordURL)!
@@ -187,7 +159,7 @@ extension HomeView: UICollectionViewDelegate {
     }
 }
 
-extension HomeView: UICollectionViewDelegateFlowLayout {
+extension PreviewView: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width = (UIScreen.main.bounds.width-61)/2
         let height = (width*0.904458598726115)+39
@@ -211,7 +183,7 @@ extension HomeView: UICollectionViewDelegateFlowLayout {
     }
 }
 
-extension HomeView: UICollectionViewDataSource {
+extension PreviewView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return cards.count
     }

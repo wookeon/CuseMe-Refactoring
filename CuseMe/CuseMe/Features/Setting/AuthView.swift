@@ -10,7 +10,7 @@ import UIKit
 
 class AuthView: UIViewController {
     
-    // MARK: Variables
+    // MARK: Variable
     private var authService = AuthService()
 
     // MARK: Lifecycle
@@ -45,6 +45,8 @@ class AuthView: UIViewController {
             if response.success {
                 let token = response.data?.token
                 UserDefaults.standard.set(token, forKey: "token")
+                
+                print(token)
                 
                 weak var pvc = self.presentingViewController
                 

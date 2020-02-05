@@ -17,7 +17,7 @@ struct Card: Codable {
     var visible: Bool
     let serialNum: String
     let sequence: Int
-    var selected = false
+    var isSelected = false
     
     enum CodingKeys: String, CodingKey {
         case userIdx
