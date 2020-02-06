@@ -111,15 +111,54 @@ class CardService: APIManager, Requestable {
     func download(from serialNumber: String, completion: @escaping (ResponseMessage?, Error?) -> Void) {
         
         let url = Self.setURL("/cards/\(serialNumber)")
-        
         let token = UserDefaults.standard.string(forKey: "token") ?? ""
-        
         let header: HTTPHeaders = [
             "Content-Type" : "application/json",
             "token" : "\(token)"
         ]
         
         postable(url: url, type: ResponseMessage.self, body: nil, header: header) {
+            (response, error) in
+            
+            if response != nil {
+                completion(response, nil)
+            } else {
+                completion(nil, error)
+            }
+        }
+    }
+    
+    func update(cardIdx: Int, isHidden: Bool, completion: @escaping (ResponseMessage?, Error?) -> Void) {
+        let url = Self.setURL("/cards/\(cardIdx)")
+        let token = UserDefaults.standard.string(forKey: "token") ?? ""
+        let header: HTTPHeaders = [
+            "Content-Type": "application/json",
+            "token": "\(token)"
+        ]
+        let body: Parameters = [
+            "visible": "\(isHidden)"
+        ]
+        
+        putable(url: url, type: ResponseMessage.self, body: body, header: header) {
+            (response, error) in
+            
+            if response != nil {
+                completion(response, nil)
+            } else {
+                completion(nil, error)
+            }
+        }
+    }
+    
+    func delete(cardIdx: Int, completion: @escaping (ResponseMessage?, Error?) -> Void) {
+        let url = Self.setURL("/cards/\(cardIdx)")
+        let token = UserDefaults.standard.string(forKey: "token") ?? ""
+        let header: HTTPHeaders = [
+            "Content-Type": "application/json",
+            "token": "\(token)"
+        ]
+        
+        delete(url: url, type: ResponseMessage.self, body: nil, header: header) {
             (response, error) in
             
             if response != nil {

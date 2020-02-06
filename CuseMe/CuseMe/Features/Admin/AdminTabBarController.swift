@@ -53,17 +53,17 @@ class AdminTabBarController: UITabBarController {
     }
     
     // MARK: @objc
-    @objc func menuButtonDidTap(_ sender: UIButton) {
+    @objc private func menuButtonDidTap(_ sender: UIButton) {
         sender.isSelected.toggle()
         
         if sender.isSelected { showSubMenus() }
         else { hideSubMenus() }
     }
     
-    @objc func subMenuButtonDidTap(_ sender: UIButton) {
+    @objc private func subMenuButtonDidTap(_ sender: UIButton) {
         if sender.tag == 0 {
             let dvc = UIStoryboard(name: "Detail", bundle: nil).instantiateViewController(withIdentifier: "CreateView") as! CreateView
-            //TODO: 다음 VC 에 수정인지 추가인지 전달
+            //dvc.task = "추가"
             dvc.modalPresentationStyle = .fullScreen
             present(dvc, animated: true)
         } else if sender.tag == 1 {
@@ -73,12 +73,12 @@ class AdminTabBarController: UITabBarController {
         }
     }
     
-    @objc func blurViewDidTap() {
+    @objc private func blurViewDidTap() {
         hideSubMenus()
     }
     
     // MARK: UI
-    private let menuButton = UIButton().then {
+    let menuButton = UIButton().then {
         $0.setImage(UIImage(named: "TabBarMenuImage"), for: .normal)
         $0.shadows(x: 0, y: 3, color: UIColor.highlight, opacity: 0.5, blur: 6)
         $0.adjustsImageWhenHighlighted = false

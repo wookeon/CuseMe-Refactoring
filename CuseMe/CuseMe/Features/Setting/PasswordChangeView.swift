@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+// TODO: 입력 상태에 따라서 버튼의 상태 변경
 class PasswordChangeView: UIViewController {
     
     // MARK: Variable

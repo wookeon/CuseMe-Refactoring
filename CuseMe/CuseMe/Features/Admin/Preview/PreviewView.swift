@@ -30,7 +30,8 @@ class PreviewView: UIViewController {
     // MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        // TODO: PreviewEditView 수정 후 변경
+        editButton.isHidden = true
         cardCollectionView.delegate = self
         cardCollectionView.dataSource = self
     }
@@ -63,6 +64,7 @@ class PreviewView: UIViewController {
         
         waveAnimationView.play()
         waveAnimationView.loopMode = .loop
+        waveAnimationView.contentMode = .scaleToFill
         doneButton.cornerRadius(cornerRadii: nil)
         cardCollectionView.cornerRadius(cornerRadii: 20)
         

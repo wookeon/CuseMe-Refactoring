@@ -54,7 +54,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="157" height="181"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Pen-Hr-ZGF">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Pen-Hr-ZGF">
                                                     <rect key="frame" x="0.0" y="0.0" width="157" height="142"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QZO-h8-VAV">
@@ -106,29 +106,47 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="zFe-gJ-0dJ">
                                                 <rect key="frame" x="0.0" y="123" width="375" height="19"/>
                                                 <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZkA-8Q-j03">
+                                                    <button opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZkA-8Q-j03">
                                                         <rect key="frame" x="0.0" y="0.0" width="125" height="19"/>
                                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
+                                                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <state key="normal" title="보이는 순">
+                                                            <color key="titleColor" red="0.70588235294117641" green="0.70588235294117641" blue="0.70588235294117641" alpha="1" colorSpace="calibratedRGB"/>
+                                                        </state>
+                                                        <state key="selected">
                                                             <color key="titleColor" red="0.98431372549999996" green="0.42745098040000001" blue="0.41568627450000001" alpha="1" colorSpace="calibratedRGB"/>
                                                         </state>
                                                         <connections>
-                                                            <action selector="orderByVisibleButton:" destination="Pfx-iF-d5L" eventType="touchUpInside" id="EvE-Yv-nXP"/>
+                                                            <action selector="orderButtonDidTap:" destination="Pfx-iF-d5L" eventType="touchUpInside" id="ceH-vl-8zf"/>
                                                         </connections>
                                                     </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Ny-2Q-Kvc">
+                                                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Ny-2Q-Kvc">
                                                         <rect key="frame" x="125" y="0.0" width="125" height="19"/>
-                                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <state key="normal" title="빈도 순">
+                                                            <color key="titleColor" red="0.70588235290000001" green="0.70588235290000001" blue="0.70588235290000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                        </state>
+                                                        <state key="selected">
                                                             <color key="titleColor" red="0.98431372549999996" green="0.42745098040000001" blue="0.41568627450000001" alpha="1" colorSpace="calibratedRGB"/>
                                                         </state>
+                                                        <connections>
+                                                            <action selector="orderButtonDidTap:" destination="Pfx-iF-d5L" eventType="touchUpInside" id="d40-23-uZd"/>
+                                                        </connections>
                                                     </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cLB-W1-Hea">
+                                                    <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cLB-W1-Hea">
                                                         <rect key="frame" x="250" y="0.0" width="125" height="19"/>
-                                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <state key="normal" title="이름 순">
+                                                            <color key="titleColor" red="0.70588235290000001" green="0.70588235290000001" blue="0.70588235290000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                        </state>
+                                                        <state key="selected">
                                                             <color key="titleColor" red="0.98431372549999996" green="0.42745098040000001" blue="0.41568627450000001" alpha="1" colorSpace="calibratedRGB"/>
                                                         </state>
+                                                        <connections>
+                                                            <action selector="orderButtonDidTap:" destination="Pfx-iF-d5L" eventType="touchUpInside" id="mfk-PR-d7V"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                                 <constraints>
@@ -219,16 +237,163 @@
                                     <constraint firstItem="CZV-e9-yvZ" firstAttribute="top" secondItem="brn-pq-C86" secondAttribute="top" id="x5q-4H-kCN"/>
                                 </constraints>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xtc-Uy-cwQ" userLabel="popUpView">
+                                <rect key="frame" x="0.0" y="812" width="375" height="83"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="KIa-O5-oWi" userLabel="popUpStackView">
+                                        <rect key="frame" x="0.0" y="4" width="375" height="44"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VzN-fa-mjr">
+                                                <rect key="frame" x="0.0" y="0.0" width="93.666666666666671" height="44"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cgA-WP-ffV">
+                                                        <rect key="frame" x="0.0" y="0.0" width="93.666666666666671" height="32"/>
+                                                        <state key="normal" image="TabBarDeleteImage"/>
+                                                        <connections>
+                                                            <action selector="popUpViewButtonDidTap:" destination="Pfx-iF-d5L" eventType="touchUpInside" id="feJ-LX-uNS"/>
+                                                        </connections>
+                                                    </button>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="삭제" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hck-QL-UIz">
+                                                        <rect key="frame" x="0.0" y="32" width="93.666666666666671" height="12"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="12" id="dpG-LD-QES"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="10"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                                <color key="backgroundColor" red="0.98431372549999996" green="0.42745098040000001" blue="0.41568627450000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                <constraints>
+                                                    <constraint firstItem="cgA-WP-ffV" firstAttribute="top" secondItem="VzN-fa-mjr" secondAttribute="top" id="LnV-Vn-88r"/>
+                                                    <constraint firstItem="cgA-WP-ffV" firstAttribute="leading" secondItem="VzN-fa-mjr" secondAttribute="leading" id="cBK-0i-n9n"/>
+                                                    <constraint firstAttribute="trailing" secondItem="cgA-WP-ffV" secondAttribute="trailing" id="eS6-Kb-UU3"/>
+                                                    <constraint firstAttribute="trailing" secondItem="hck-QL-UIz" secondAttribute="trailing" id="fIF-88-AfU"/>
+                                                    <constraint firstAttribute="bottom" secondItem="hck-QL-UIz" secondAttribute="bottom" id="nPW-kt-OqN"/>
+                                                    <constraint firstItem="hck-QL-UIz" firstAttribute="top" secondItem="cgA-WP-ffV" secondAttribute="bottom" id="tUC-aN-jLZ"/>
+                                                    <constraint firstItem="hck-QL-UIz" firstAttribute="leading" secondItem="VzN-fa-mjr" secondAttribute="leading" id="xhs-88-2Ny"/>
+                                                </constraints>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C8g-6q-r2c">
+                                                <rect key="frame" x="93.666666666666686" y="0.0" width="94" height="44"/>
+                                                <subviews>
+                                                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vwz-aa-MZR">
+                                                        <rect key="frame" x="0.0" y="0.0" width="94" height="32"/>
+                                                        <state key="normal" image="TabBarOffImage"/>
+                                                        <connections>
+                                                            <action selector="popUpViewButtonDidTap:" destination="Pfx-iF-d5L" eventType="touchUpInside" id="L3G-sb-2Li"/>
+                                                        </connections>
+                                                    </button>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="숨기기" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hBb-oA-5kC">
+                                                        <rect key="frame" x="0.0" y="32" width="94" height="12"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="12" id="ARl-QM-Hsu"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="10"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                                <color key="backgroundColor" red="0.98431372549999996" green="0.42745098040000001" blue="0.41568627450000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                <constraints>
+                                                    <constraint firstItem="hBb-oA-5kC" firstAttribute="leading" secondItem="C8g-6q-r2c" secondAttribute="leading" id="07Q-u0-gqy"/>
+                                                    <constraint firstAttribute="bottom" secondItem="hBb-oA-5kC" secondAttribute="bottom" id="9Q4-rY-sXb"/>
+                                                    <constraint firstItem="Vwz-aa-MZR" firstAttribute="leading" secondItem="C8g-6q-r2c" secondAttribute="leading" id="9po-CY-ZWO"/>
+                                                    <constraint firstItem="Vwz-aa-MZR" firstAttribute="top" secondItem="C8g-6q-r2c" secondAttribute="top" id="EnW-TG-IT5"/>
+                                                    <constraint firstItem="hBb-oA-5kC" firstAttribute="top" secondItem="Vwz-aa-MZR" secondAttribute="bottom" id="Kvd-5d-hdC"/>
+                                                    <constraint firstAttribute="trailing" secondItem="hBb-oA-5kC" secondAttribute="trailing" id="KzA-Ll-ej5"/>
+                                                    <constraint firstAttribute="trailing" secondItem="Vwz-aa-MZR" secondAttribute="trailing" id="LdU-8Y-8rf"/>
+                                                </constraints>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8dY-k1-nhW">
+                                                <rect key="frame" x="187.66666666666666" y="0.0" width="93.666666666666657" height="44"/>
+                                                <subviews>
+                                                    <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n5Q-Ac-9H0">
+                                                        <rect key="frame" x="0.0" y="0.0" width="93.666666666666671" height="32"/>
+                                                        <state key="normal" image="TabBarEditImage"/>
+                                                        <connections>
+                                                            <action selector="popUpViewButtonDidTap:" destination="Pfx-iF-d5L" eventType="touchUpInside" id="fCb-Mk-ZyQ"/>
+                                                        </connections>
+                                                    </button>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="수정" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vA8-wt-fEt">
+                                                        <rect key="frame" x="0.0" y="32" width="93.666666666666671" height="12"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="12" id="b9z-0C-szt"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="10"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                                <color key="backgroundColor" red="0.98431372549999996" green="0.42745098040000001" blue="0.41568627450000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                <constraints>
+                                                    <constraint firstItem="n5Q-Ac-9H0" firstAttribute="top" secondItem="8dY-k1-nhW" secondAttribute="top" id="832-jc-59x"/>
+                                                    <constraint firstAttribute="bottom" secondItem="vA8-wt-fEt" secondAttribute="bottom" id="F7h-hI-gvj"/>
+                                                    <constraint firstItem="vA8-wt-fEt" firstAttribute="leading" secondItem="8dY-k1-nhW" secondAttribute="leading" id="XoB-xF-Ioh"/>
+                                                    <constraint firstItem="vA8-wt-fEt" firstAttribute="top" secondItem="n5Q-Ac-9H0" secondAttribute="bottom" id="gyr-iT-qse"/>
+                                                    <constraint firstAttribute="trailing" secondItem="n5Q-Ac-9H0" secondAttribute="trailing" id="xCr-S9-cR4"/>
+                                                    <constraint firstItem="n5Q-Ac-9H0" firstAttribute="leading" secondItem="8dY-k1-nhW" secondAttribute="leading" id="xbD-eC-fz9"/>
+                                                    <constraint firstAttribute="trailing" secondItem="vA8-wt-fEt" secondAttribute="trailing" id="z3V-iG-2CP"/>
+                                                </constraints>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RnV-NN-1EF">
+                                                <rect key="frame" x="281.33333333333331" y="0.0" width="93.666666666666686" height="44"/>
+                                                <subviews>
+                                                    <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5yU-9o-UMO">
+                                                        <rect key="frame" x="0.0" y="0.0" width="93.666666666666671" height="32"/>
+                                                        <state key="normal" image="TabBarCancelImage"/>
+                                                        <connections>
+                                                            <action selector="popUpViewButtonDidTap:" destination="Pfx-iF-d5L" eventType="touchUpInside" id="Y84-eH-MV2"/>
+                                                        </connections>
+                                                    </button>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="취소" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DcJ-hz-tMK">
+                                                        <rect key="frame" x="0.0" y="32" width="93.666666666666671" height="12"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="12" id="flN-aP-RK4"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="10"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                                <color key="backgroundColor" red="0.98431372549999996" green="0.42745098040000001" blue="0.41568627450000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="trailing" secondItem="5yU-9o-UMO" secondAttribute="trailing" id="33p-8J-CbQ"/>
+                                                    <constraint firstAttribute="trailing" secondItem="DcJ-hz-tMK" secondAttribute="trailing" id="NLZ-RE-e4B"/>
+                                                    <constraint firstItem="DcJ-hz-tMK" firstAttribute="leading" secondItem="RnV-NN-1EF" secondAttribute="leading" id="Py7-Rf-ofB"/>
+                                                    <constraint firstItem="5yU-9o-UMO" firstAttribute="top" secondItem="RnV-NN-1EF" secondAttribute="top" id="YRn-au-LIC"/>
+                                                    <constraint firstAttribute="bottom" secondItem="DcJ-hz-tMK" secondAttribute="bottom" id="lNr-Bc-lge"/>
+                                                    <constraint firstItem="5yU-9o-UMO" firstAttribute="leading" secondItem="RnV-NN-1EF" secondAttribute="leading" id="vZO-s8-e0m"/>
+                                                    <constraint firstItem="DcJ-hz-tMK" firstAttribute="top" secondItem="5yU-9o-UMO" secondAttribute="bottom" id="yq5-u1-mtk"/>
+                                                </constraints>
+                                            </view>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="44" id="3Gn-gn-lU4"/>
+                                        </constraints>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" red="0.98431372549999996" green="0.42745098040000001" blue="0.41568627450000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="KIa-O5-oWi" firstAttribute="top" secondItem="Xtc-Uy-cwQ" secondAttribute="top" constant="4" id="DTX-tt-4FL"/>
+                                    <constraint firstItem="KIa-O5-oWi" firstAttribute="leading" secondItem="Xtc-Uy-cwQ" secondAttribute="leading" id="aoQ-DJ-xOg"/>
+                                    <constraint firstAttribute="height" constant="83" id="oEf-cL-NQS"/>
+                                    <constraint firstAttribute="trailing" secondItem="KIa-O5-oWi" secondAttribute="trailing" id="z4C-dt-W7N"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="5aM-yJ-a00" firstAttribute="top" secondItem="brn-pq-C86" secondAttribute="bottom" id="3yY-dJ-ofh"/>
                             <constraint firstItem="brn-pq-C86" firstAttribute="leading" secondItem="3jZ-FI-8qf" secondAttribute="leading" id="8bh-vg-Zrm"/>
+                            <constraint firstItem="3jZ-FI-8qf" firstAttribute="trailing" secondItem="Xtc-Uy-cwQ" secondAttribute="trailing" id="DbH-CU-hmB"/>
                             <constraint firstItem="3jZ-FI-8qf" firstAttribute="trailing" secondItem="5aM-yJ-a00" secondAttribute="trailing" id="WzA-kA-uuR"/>
                             <constraint firstItem="brn-pq-C86" firstAttribute="top" secondItem="3jZ-FI-8qf" secondAttribute="top" id="Zzy-Fy-iAD"/>
                             <constraint firstItem="3jZ-FI-8qf" firstAttribute="trailing" secondItem="brn-pq-C86" secondAttribute="trailing" id="cCW-oT-na1"/>
                             <constraint firstItem="5aM-yJ-a00" firstAttribute="bottom" secondItem="voD-GB-Rfh" secondAttribute="bottom" id="iht-3Z-a9F"/>
+                            <constraint firstAttribute="bottom" secondItem="Xtc-Uy-cwQ" secondAttribute="bottom" constant="-83" id="lEG-Eg-Cmu"/>
                             <constraint firstItem="5aM-yJ-a00" firstAttribute="leading" secondItem="3jZ-FI-8qf" secondAttribute="leading" id="ojW-MK-DVQ"/>
+                            <constraint firstItem="Xtc-Uy-cwQ" firstAttribute="leading" secondItem="3jZ-FI-8qf" secondAttribute="leading" id="tCz-or-uWd"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="3jZ-FI-8qf"/>
                     </view>
@@ -239,6 +404,9 @@
                         <outlet property="orderByCountButton" destination="7Ny-2Q-Kvc" id="A4Z-IF-CJM"/>
                         <outlet property="orderByNameButton" destination="cLB-W1-Hea" id="j9H-3i-mLd"/>
                         <outlet property="orderByVisibleButton" destination="ZkA-8Q-j03" id="k22-x0-iOq"/>
+                        <outlet property="orderStackView" destination="zFe-gJ-0dJ" id="zKQ-pb-DQU"/>
+                        <outlet property="popUpView" destination="Xtc-Uy-cwQ" id="ncP-sD-M1O"/>
+                        <outlet property="popUpViewBottomConstraint" destination="lEG-Eg-Cmu" id="sBi-aB-00D"/>
                         <outlet property="searchTextField" destination="DBw-wL-pZK" id="kUc-n3-jEE"/>
                         <outlet property="searchView" destination="xeA-4D-Iiy" id="UF7-Gt-d6s"/>
                         <outlet property="topContentView" destination="CZV-e9-yvZ" id="5wE-5L-v5p"/>
@@ -247,7 +415,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1Bu-L8-kk1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1289" y="898"/>
+            <point key="canvasLocation" x="1288.8" y="897.78325123152717"/>
         </scene>
         <!--홈 미리보기-->
         <scene sceneID="hci-cY-hl8">
@@ -585,8 +753,12 @@
         <image name="ManageSearchImage" width="19" height="19"/>
         <image name="ManageSettingImage" width="20" height="21"/>
         <image name="PreviewEditAllImage" width="54" height="24"/>
+        <image name="TabBarCancelImage" width="20" height="19"/>
+        <image name="TabBarDeleteImage" width="20" height="24"/>
+        <image name="TabBarEditImage" width="26" height="23"/>
         <image name="TabBarManageDeselectedImage" width="28" height="30"/>
         <image name="TabBarManageSelectedImage" width="28" height="30"/>
+        <image name="TabBarOffImage" width="32" height="19"/>
         <image name="TabBarPreviewDeselectedImage" width="30" height="28"/>
         <image name="TabBarPreviewSelectedImage" width="30" height="28"/>
         <image name="closeImage" width="28" height="28"/>

@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+// TODO: 입력 상태에 따라서 버튼의 상태 변경
 class DownloadView: UIViewController {
     
     // MARK: Variable
@@ -17,7 +17,6 @@ class DownloadView: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
     }
     
     override func viewWillAppear(_ animated: Bool) {
