@@ -40,6 +40,7 @@
 		F5129E0923E7EBA70069C754 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F5129E0723E7EBA70069C754 /* LaunchScreen.storyboard */; };
 		F5129E1423E7ED370069C754 /* Splash.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F5129E1323E7ED370069C754 /* Splash.storyboard */; };
 		F5129E1623E7EDE90069C754 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5129E1523E7EDE90069C754 /* SplashView.swift */; };
+		F528474523EC083B0081FA78 /* PasswordChangeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F528474423EC083B0081FA78 /* PasswordChangeView.swift */; };
 		F580168C23E9B771002EC129 /* EditCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F580168B23E9B771002EC129 /* EditCard.swift */; };
 		F580168E23E9BB79002EC129 /* Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = F580168D23E9BB79002EC129 /* Test.swift */; };
 		F580169023EA59BE002EC129 /* ManageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F580168F23EA59BE002EC129 /* ManageView.swift */; };
@@ -83,6 +84,7 @@
 		F5129E0A23E7EBA70069C754 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F5129E1323E7ED370069C754 /* Splash.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Splash.storyboard; sourceTree = "<group>"; };
 		F5129E1523E7EDE90069C754 /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
+		F528474423EC083B0081FA78 /* PasswordChangeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordChangeView.swift; sourceTree = "<group>"; };
 		F580168B23E9B771002EC129 /* EditCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCard.swift; sourceTree = "<group>"; };
 		F580168D23E9BB79002EC129 /* Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test.swift; sourceTree = "<group>"; };
 		F580168F23EA59BE002EC129 /* ManageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageView.swift; sourceTree = "<group>"; };
@@ -209,6 +211,7 @@
 			children = (
 				F50C476123E8223600905E6F /* Setting.storyboard */,
 				F50C476323E8477500905E6F /* AuthView.swift */,
+				F528474423EC083B0081FA78 /* PasswordChangeView.swift */,
 				F50C476A23E87AA600905E6F /* DownloadView.swift */,
 			);
 			path = Setting;
@@ -459,6 +462,7 @@
 				F50C474623E7F01900905E6F /* Requestable.swift in Sources */,
 				F50C475223E7FC8700905E6F /* UIView+Extensions.swift in Sources */,
 				F50C476823E8587600905E6F /* AdminTabBarController.swift in Sources */,
+				F528474523EC083B0081FA78 /* PasswordChangeView.swift in Sources */,
 				F50C476623E8583B00905E6F /* PreviewView.swift in Sources */,
 				F50C474D23E7F1F300905E6F /* HomeView.swift in Sources */,
 				F50C476423E8477500905E6F /* AuthView.swift in Sources */,

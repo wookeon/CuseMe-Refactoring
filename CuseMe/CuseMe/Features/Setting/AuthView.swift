@@ -68,7 +68,7 @@ class AuthView: UIViewController {
     @IBOutlet private weak var inputViewCenterY: NSLayoutConstraint!
 }
 
-// MARK: Extensions
+// MARK: Extension
 extension AuthView {
     @objc private func keyboardWillShow(_ notification: NSNotification) {
         

@@ -15,13 +15,10 @@ class AuthService: APIManager, Requestable {
     func auth(completion: @escaping (ResponseMessage?, Error?) -> Void) {
         
         let url = Self.setURL("/auth/start")
-        
         let uuid = KeychainWrapper.standard.string(forKey: "uuid") ?? ""
-        
         let header: HTTPHeaders = [
             "Content-Type" : "application/json"
         ]
-        
         let body: Parameters = [
             "uuid" : uuid
         ]
@@ -41,19 +38,41 @@ class AuthService: APIManager, Requestable {
     func admin(password: String, completion: @escaping (ResponseObject<Token>?, Error?) -> Void) {
         
         let url = Self.setURL("/auth/signin")
-        
         let uuid = KeychainWrapper.standard.string(forKey: "uuid") ?? ""
-        
         let header: HTTPHeaders = [
             "Content-Type" : "application/json"
         ]
-        
         let body: Parameters = [
             "uuid" : "\(uuid)",
             "password" : "\(password)"
         ]
         
         postable(url: url, type: ResponseObject<Token>.self, body: body, header: header) {
+            (response, error) in
+            
+            if response != nil {
+                completion(response, nil)
+            } else {
+                completion(nil, error)
+            }
+        }
+    }
+    
+    // 비밀번호 변경
+    func changePassword(currentPassword: String, newPassword: String, completion: @escaping (ResponseMessage?, Error?) -> Void) {
+        
+        let url = Self.setURL("/auth")
+        let token = UserDefaults.standard.string(forKey: "token") ?? ""
+        let header: HTTPHeaders = [
+            "Content-Type" : "application/json",
+            "token": "\(token)"
+        ]
+        let body: Parameters = [
+            "password": "\(currentPassword)",
+            "newPassword": "\(newPassword)"
+        ]
+        
+        putable(url: url, type: ResponseMessage.self, body: body, header: header) {
             (response, error) in
             
             if response != nil {

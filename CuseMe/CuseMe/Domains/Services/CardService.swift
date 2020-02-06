@@ -23,8 +23,6 @@ class CardService: APIManager, Requestable {
             "uuid": "\(uuid)"
         ]
         
-        print(body)
-        
         postable(url: url, type: ResponseArray<Card>.self, body: body, header: header) {
             (response, error) in
             
@@ -67,7 +65,7 @@ class CardService: APIManager, Requestable {
             "token" : "\(token)"
         ]
         
-        putalbe(url: url, type: ResponseMessage.self, body: nil, header: header) {
+        putable(url: url, type: ResponseMessage.self, body: nil, header: header) {
             (response, error) in
             
             if response != nil {
@@ -98,7 +96,7 @@ class CardService: APIManager, Requestable {
             "updateArr": "asd"
         ]
         
-        putalbe(url: url, type: ResponseArray<EditCard>.self, body: body, header: header) {
+        putable(url: url, type: ResponseArray<EditCard>.self, body: body, header: header) {
             (response, error) in
             
             if response != nil {

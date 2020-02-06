@@ -79,7 +79,7 @@ class PreviewEditView: UIViewController {
     }
 }
 
-// MARK: Extensions
+// MARK: Extension
 extension PreviewEditView: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath) as! PreviewEditCardCell

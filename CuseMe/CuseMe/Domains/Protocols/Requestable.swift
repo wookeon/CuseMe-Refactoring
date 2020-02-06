@@ -57,7 +57,7 @@ extension Requestable {
         }
     }
     
-    func putalbe<T: Codable>(url: String, type: T.Type, body: [String:Any]?, header: HTTPHeaders?, completion: @escaping (T?, Error?) -> Void) {
+    func putable<T: Codable>(url: String, type: T.Type, body: [String:Any]?, header: HTTPHeaders?, completion: @escaping (T?, Error?) -> Void) {
         Alamofire.request(url, method: .put, parameters: body, encoding: JSONEncoding.default, headers: header)
             .responseJSON {
                 response in

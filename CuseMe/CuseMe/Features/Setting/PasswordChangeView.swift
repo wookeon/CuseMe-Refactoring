@@ -1,23 +1,22 @@
 //
-//  DownloadView.swift
+//  PasswordChangeView.swift
 //  CuseMe
 //
-//  Created by wookeon on 2020/02/04.
+//  Created by wookeon on 2020/02/06.
 //  Copyright © 2020 wookeon. All rights reserved.
 //
 
 import UIKit
 
-class DownloadView: UIViewController {
+class PasswordChangeView: UIViewController {
     
     // MARK: Variable
-    let cardService = CardService()
+    private var authService = AuthService()
 
     // MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -29,59 +28,54 @@ class DownloadView: UIViewController {
     override func updateViewConstraints() {
         super.updateViewConstraints()
         
-        downloadButton.cornerRadius(cornerRadii: nil)
-        downloadButton.shadows(x: 2, y: 3, color: UIColor.highlight, opacity: 0.53, blur: 7)
+        changeButton.cornerRadius(cornerRadii: nil)
+        changeButton.shadows(x: 2, y: 3, color: UIColor.highlight, opacity: 0.53, blur: 7)
     }
     
     // MARK: IBActions
-    @IBAction func downloadButtonDidTap(_ sender: Any) {
-        guard let serialNumber = serialNumberTextField.text else { return }
+    @IBAction private func closeButtonDidTap(_ sender: UIButton) {
+        dismiss(animated: true)
+    }
+    
+    @IBAction private func changeButtonDidTap(_ sender: UIButton) {
+        guard let currentPassword = currentPasswordTextField.text else { return }
+        guard let newPassword = currentPasswordTextField.text else { return }
         
-        cardService.download(from: serialNumber) { [weak self] response, error in
-            
+        authService.changePassword(currentPassword: currentPassword, newPassword: newPassword) {
+            [weak self] response, error in
             guard let self = self else { return }
             guard let response = response else { return }
             
             if response.success {
-                // TODO: 카드 상세보기로 이동
-                self.dismiss(animated: true, completion: nil)
-            } else {
-                let alert = UIAlertController(title: "내려받기 실패", message: response.message, preferredStyle: .alert)
-                let action = UIAlertAction(title: "확인", style: .default, handler: nil)
+                let alert = UIAlertController(title: "비밀번호 변경 완료", message: "", preferredStyle: .alert)
+                let action = UIAlertAction(title: "확인", style: .default) { action in
+                    self.dismiss(animated: true)
+                }
                 alert.addAction(action)
-                
                 self.present(alert, animated: true)
+            } else {
+                self.wrongLabel.text = response.message
             }
         }
     }
     
-    @IBAction func createButtonDidTap(_ sender: Any) {
-        weak var pvc = self.presentingViewController
-        dismiss(animated: true) {
-            let dvc = UIStoryboard(name: "Deatail", bundle: nil).instantiateViewController(withIdentifier: "CreateView") as! CreateView
-            dvc.modalPresentationStyle = .fullScreen
-            pvc?.present(dvc, animated: true)
-        }
-    }
-    
     // MARK: IBOutlets
-    @IBOutlet weak var serialNumberTextField: UITextField!
-    @IBOutlet weak var downloadButton: UIButton!
-    @IBOutlet weak var inputViewCenterY: NSLayoutConstraint!
-    // MARK: UI
-    
-    // MARK: Functions
+    @IBOutlet private weak var changeButton: UIButton!
+    @IBOutlet private weak var currentPasswordTextField: UITextField!
+    @IBOutlet private weak var newPasswordTextField: UITextField!
+    @IBOutlet private weak var confirmPasswordTextField: UITextField!
+    @IBOutlet private weak var inputStackViewCenterY: NSLayoutConstraint!
+    @IBOutlet private weak var wrongLabel: UILabel!
 }
 
 // MARK: Extension
-extension DownloadView {
+extension PasswordChangeView {
     @objc private func keyboardWillShow(_ notification: NSNotification) {
-        
         guard let duration = notification.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? Double else { return }
         guard let curve = notification.userInfo?[UIResponder.keyboardAnimationCurveUserInfoKey] as? UInt else { return }
         
         UIView.animate(withDuration: duration, delay: 0.0, options: .init(rawValue: curve), animations: {
-            self.inputViewCenterY.constant = -70
+            self.inputStackViewCenterY.constant = -100
         })
         
         self.view.layoutIfNeeded()
@@ -92,7 +86,7 @@ extension DownloadView {
         guard let curve = notification.userInfo?[UIResponder.keyboardAnimationCurveUserInfoKey] as? UInt else {return}
         
         UIView.animate(withDuration: duration, delay: 0.0, options: .init(rawValue: curve), animations: {
-            self.inputViewCenterY.constant = 0
+            self.inputStackViewCenterY.constant = 0
         })
         
         self.view.layoutIfNeeded()

@@ -56,7 +56,7 @@ class ManageView: UIViewController {
         dismiss(animated: true)
     }
     @IBAction private func settingButtonDidTap(_ sender: Any) {
-        let dvc = UIStoryboard(name: "Setting", bundle: nil).instantiateViewController(withIdentifier: "SettingView")
+        let dvc = UIStoryboard(name: "Setting", bundle: nil).instantiateViewController(withIdentifier: "PasswordChangeView") as! PasswordChangeView
         dvc.modalPresentationStyle = .fullScreen
         present(dvc, animated: true)
     }
