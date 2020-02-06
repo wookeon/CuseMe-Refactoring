@@ -42,6 +42,13 @@ class ManageView: UIViewController {
     override func updateViewConstraints() {
         super.updateViewConstraints()
         doneButton.cornerRadius(cornerRadii: nil)
+        topView.cornerRadius(cornerRadii: 10)
+        topView.shadows(x: 0, y: 3, color: UIColor.black, opacity: 0.05, blur: 6)
+        topContentView.cornerRadius(parts: [.bottomLeft, .bottomRight], cornerRadii: 10)
+        searchView.cornerRadius(cornerRadii: 10)
+        searchView.layer.borderColor = UIColor.highlight.cgColor
+        searchView.layer.borderWidth = 1.0
+        
     }
     
     // MARK: IBActions
@@ -54,15 +61,21 @@ class ManageView: UIViewController {
         present(dvc, animated: true)
     }
     
-    
     // MARK: IBOutlets
+    @IBOutlet private weak var topView: UIView!
+    @IBOutlet private weak var topContentView: UIView!
+    @IBOutlet private weak var searchView: UIView!
+    @IBOutlet private weak var searchTextField: UITextField!
     @IBOutlet private weak var cardCollectionView: UICollectionView!
-    
     @IBOutlet private weak var doneButton: UIButton!
+    @IBOutlet private weak var orderByVisibleButton: UIButton!
+    @IBOutlet private weak var orderByCountButton: UIButton!
+    @IBOutlet private weak var orderByNameButton: UIButton!
     
     // MARK: UI
     
     // MARK: Functions
+    
 }
 
 extension ManageView: UICollectionViewDelegateFlowLayout {

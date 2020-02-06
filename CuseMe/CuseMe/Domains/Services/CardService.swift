@@ -79,6 +79,7 @@ class CardService: APIManager, Requestable {
     }
     
     // 카드 전체 수정
+    // TODO: 구현중
     func editCards(cards: [Card], completion: @escaping (ResponseArray<EditCard>?, Error?) -> Void) {
         
         let url = Self.setURL("/cards")
@@ -87,16 +88,40 @@ class CardService: APIManager, Requestable {
             "Content-Type" : "application/json",
             "token" : "\(token)"
         ]
-        
+
         let cards = cards.map { Test(cardIdx: $0.cardIdx, visible: $0.visible, sequence: $0.sequence) }
+        let encoder = JSONEncoder()
+        let result = try! encoder.encode(cards)
+        let jsonString = String(data: result, encoding: .utf8)
         
         let body: Parameters = [
-            "updateArr": "\(cards)"
+            "updateArr": "asd"
         ]
         
-        print(body)
-        
         putalbe(url: url, type: ResponseArray<EditCard>.self, body: body, header: header) {
+            (response, error) in
+            
+            if response != nil {
+                completion(response, nil)
+            } else {
+                completion(nil, error)
+            }
+        }
+    }
+    
+    // 카드 내려받기
+    func download(from serialNumber: String, completion: @escaping (ResponseMessage?, Error?) -> Void) {
+        
+        let url = Self.setURL("/cards/\(serialNumber)")
+        
+        let token = UserDefaults.standard.string(forKey: "token") ?? ""
+        
+        let header: HTTPHeaders = [
+            "Content-Type" : "application/json",
+            "token" : "\(token)"
+        ]
+        
+        postable(url: url, type: ResponseMessage.self, body: nil, header: header) {
             (response, error) in
             
             if response != nil {
