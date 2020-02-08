@@ -42,7 +42,6 @@
 		F5129E1623E7EDE90069C754 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5129E1523E7EDE90069C754 /* SplashView.swift */; };
 		F528474523EC083B0081FA78 /* PasswordChangeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F528474423EC083B0081FA78 /* PasswordChangeView.swift */; };
 		F580168C23E9B771002EC129 /* EditCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F580168B23E9B771002EC129 /* EditCard.swift */; };
-		F580168E23E9BB79002EC129 /* Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = F580168D23E9BB79002EC129 /* Test.swift */; };
 		F580169023EA59BE002EC129 /* ManageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F580168F23EA59BE002EC129 /* ManageView.swift */; };
 		F580169223EA5B3F002EC129 /* ManageCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F580169123EA5B3F002EC129 /* ManageCardCell.swift */; };
 		F58F7A4723E94BC5004F82D6 /* SendDataDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F58F7A4623E94BC5004F82D6 /* SendDataDelegate.swift */; };
@@ -86,7 +85,6 @@
 		F5129E1523E7EDE90069C754 /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
 		F528474423EC083B0081FA78 /* PasswordChangeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordChangeView.swift; sourceTree = "<group>"; };
 		F580168B23E9B771002EC129 /* EditCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCard.swift; sourceTree = "<group>"; };
-		F580168D23E9BB79002EC129 /* Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test.swift; sourceTree = "<group>"; };
 		F580168F23EA59BE002EC129 /* ManageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageView.swift; sourceTree = "<group>"; };
 		F580169123EA5B3F002EC129 /* ManageCardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageCardCell.swift; sourceTree = "<group>"; };
 		F58F7A4623E94BC5004F82D6 /* SendDataDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendDataDelegate.swift; sourceTree = "<group>"; };
@@ -160,7 +158,6 @@
 				F50C473D23E7EF7700905E6F /* ResponseArray.swift */,
 				F50C473F23E7EFAE00905E6F /* Card.swift */,
 				F580168B23E9B771002EC129 /* EditCard.swift */,
-				F580168D23E9BB79002EC129 /* Test.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -472,7 +469,6 @@
 				F50C474F23E7FAF700905E6F /* HomeCardCell.swift in Sources */,
 				F50C475A23E802CB00905E6F /* UIColor+Extensions.swift in Sources */,
 				F50C475623E8003D00905E6F /* TTSService.swift in Sources */,
-				F580168E23E9BB79002EC129 /* Test.swift in Sources */,
 				F5129E1623E7EDE90069C754 /* SplashView.swift in Sources */,
 				F58F7A4723E94BC5004F82D6 /* SendDataDelegate.swift in Sources */,
 				F50C476B23E87AA600905E6F /* DownloadView.swift in Sources */,

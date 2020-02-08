@@ -35,12 +35,12 @@ class HomeView: UIViewController {
         
         cardCollectionView.delegate = self
         cardCollectionView.dataSource = self
-        
-     
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        waveAnimationView.play()
+        waveAnimationView.loopMode = .loop
         
         cardService.visibleCards() { [weak self] response, error in
             guard let self = self else { return }
@@ -66,8 +66,6 @@ class HomeView: UIViewController {
     override func updateViewConstraints() {
         super.updateViewConstraints()
         
-        waveAnimationView.play()
-        waveAnimationView.loopMode = .loop
         waveAnimationView.contentMode = .scaleToFill
         cardCollectionView.cornerRadius(cornerRadii: 20)
 

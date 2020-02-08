@@ -11,6 +11,6 @@ struct EditCard: Codable {
     let cardIdx: Int
     let userIdx: Int
     let count: Int
-    let visible: Bool
+    let visible: Int //TODO: visible -> Bool API 수정 후 고치기
     let sequence: Int
 }

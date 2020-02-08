@@ -55,8 +55,6 @@ class CardService: APIManager, Requestable {
         }
     }
     
-    
-    
     // 카드 사용 빈도 증가
     func increaseCount(cardIdx: Int, completion: @escaping (ResponseMessage?, Error?) -> Void) {
         
@@ -79,7 +77,6 @@ class CardService: APIManager, Requestable {
     }
     
     // 카드 전체 수정
-    // TODO: 구현중
     func editCards(cards: [Card], completion: @escaping (ResponseArray<EditCard>?, Error?) -> Void) {
         
         let url = Self.setURL("/cards")
@@ -88,14 +85,9 @@ class CardService: APIManager, Requestable {
             "Content-Type" : "application/json",
             "token" : "\(token)"
         ]
-
-        let cards = cards.map { Test(cardIdx: $0.cardIdx, visible: $0.visible, sequence: $0.sequence) }
-        let encoder = JSONEncoder()
-        let result = try! encoder.encode(cards)
-        let jsonString = String(data: result, encoding: .utf8)
-        
-        let body: Parameters = [
-            "updateArr": "asd"
+        let cards = cards.map { ["cardIdx": $0.cardIdx, "visible": $0.visible, "sequence": $0.sequence] }
+        let body = [
+            "updateArr": cards
         ]
         
         putable(url: url, type: ResponseArray<EditCard>.self, body: body, header: header) {

@@ -31,14 +31,14 @@ class PreviewView: UIViewController {
     // MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        // TODO: PreviewEditView 수정 후 변경
-        editButton.isHidden = true
         cardCollectionView.delegate = self
         cardCollectionView.dataSource = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        waveAnimationView.play()
+        waveAnimationView.loopMode = .loop
         getVisibleCards()
     }
     
