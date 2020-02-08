@@ -26,6 +26,7 @@ class PreviewView: UIViewController {
     private var cards = [Card]()
     
     private var prevCell: HomeCardCell?
+    private var selectedIndex: Int?
     
     // MARK: Lifecycle
     override func viewDidLoad() {
@@ -38,25 +39,7 @@ class PreviewView: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
-        cardService.visibleCards() { [weak self] response, error in
-            guard let self = self else { return }
-            guard let response = response else { return }
-            
-            if response.success {
-                // TODO: 세이프 옵셔널 바인딩
-                self.cards = response.data!
-                
-                self.cardCollectionView.reloadData()
-            } else {
-                let alert = UIAlertController(title: "에러 발생", message: "잠시 후 다시 시도해주세요.", preferredStyle: .alert)
-                let action = UIAlertAction(title: "확인", style: .default, handler: nil)
-                alert.addAction(action)
-                self.present(alert, animated: true)
-            }
-            
-            self.emptyToggle(isHidden: !self.cards.isEmpty)
-        }
+        getVisibleCards()
     }
     
     override func updateViewConstraints() {
@@ -67,7 +50,6 @@ class PreviewView: UIViewController {
         waveAnimationView.contentMode = .scaleToFill
         doneButton.cornerRadius(cornerRadii: nil)
         cardCollectionView.cornerRadius(cornerRadii: 20)
-        
         [emptyImageView, emptyLabel].forEach { view.addSubview($0) }
         emptyImageView.snp.makeConstraints {
             $0.width.equalTo(self.view.snp.width).multipliedBy(0.75)
@@ -87,12 +69,52 @@ class PreviewView: UIViewController {
     @IBAction private func doneButtonDidTap(_ sender: UIButton) {
         dismiss(animated: true)
     }
+    
     @IBAction func editButtonDidTap(_ sender: UIButton) {
         let dvc = UIStoryboard(name: "Admin", bundle: nil).instantiateViewController(withIdentifier: "PreviewEditView") as! PreviewEditView
         dvc.modalPresentationStyle = .fullScreen
         // TODO: delegate 로 다음 뷰에 전달
         dvc.cards = cards
         self.present(dvc, animated: true)
+    }
+    
+    @IBAction func tabBarButtonDidTap(_ sender: UIButton) {
+        guard let index = selectedIndex else { return }
+        if sender.tag == 0 {
+            let alert = UIAlertController(title: "카드 삭제", message: "정말로 삭제하시겠습니까?", preferredStyle: .alert)
+            let cancel = UIAlertAction(title: "취소", style: .cancel)
+            let ok = UIAlertAction(title: "삭제", style: .destructive) { _ in
+                self.deleteCard(index: index)
+            }
+            [cancel, ok].forEach {
+                alert.addAction($0)
+            }
+            present(alert, animated: true)
+        } else if sender.tag == 1 {
+            cards[index].visible.toggle()
+            cardService.update(cardIdx: cards[index].cardIdx, isHidden: false) {
+                [weak self] response, error in
+                guard let self = self else { return }
+                guard let response = response else { return }
+                
+                if response.success {
+                    self.getVisibleCards()
+                } else {
+                    let alert = UIAlertController(title: "변경 실패", message: response.message, preferredStyle: .alert)
+                    let action = UIAlertAction(title: "확인", style: .default)
+                    alert.addAction(action)
+                    self.present(alert, animated: true)
+                }
+            }
+        } else if sender.tag == 2 {
+            let dvc = UIStoryboard(name: "Detail", bundle: nil).instantiateViewController(withIdentifier: "CreateView") as! CreateView
+            //dvc.card = cards[index]
+            //dvc.task = "수정"
+            dvc.modalPresentationStyle = .fullScreen
+            present(dvc, animated: true)
+        } else if sender.tag == 3 {
+            hideMenuBar()
+        }
     }
     
     // MARK: IBOutlets
@@ -103,6 +125,8 @@ class PreviewView: UIViewController {
     @IBOutlet private weak var editButton: UIButton!
     @IBOutlet private weak var contentLabel: UILabel!
     @IBOutlet private weak var cardCollectionView: UICollectionView!
+    @IBOutlet private weak var menuBarView: UIView!
+    @IBOutlet private weak var menuBarBottomConstraint: NSLayoutConstraint!
     
     // MARK: UI
     private let emptyImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 275, height: 236)).then {
@@ -126,14 +150,66 @@ class PreviewView: UIViewController {
         emptyImageView.isHidden = isHidden
         emptyLabel.isHidden = isHidden
     }
+    
+    private func showMenuBar() {
+        (tabBarController as! AdminTabBarController).tabBar.isHidden = true
+        (tabBarController as! AdminTabBarController).menuButton.isHidden = true
+        let gap = 83 - (tabBarController?.tabBar.frame.height)!
+        menuBarBottomConstraint.constant = -gap
+    }
+    
+    private func hideMenuBar() {
+        if prevCell != nil { prevCell?.layer.borderWidth = 0 }
+        prevCell = nil
+        (tabBarController as! AdminTabBarController).tabBar.isHidden = false
+        (tabBarController as! AdminTabBarController).menuButton.isHidden = false
+        menuBarBottomConstraint.constant = -83
+    }
+    
+    private func getVisibleCards() {
+        cardService.visibleCards() { [weak self] response, error in
+            guard let self = self else { return }
+            guard let response = response else { return }
+            
+            if response.success {
+                self.cards = response.data!
+                self.cardCollectionView.reloadData()
+            } else {
+                let alert = UIAlertController(title: "에러 발생", message: "잠시 후 다시 시도해주세요.", preferredStyle: .alert)
+                let action = UIAlertAction(title: "확인", style: .default, handler: nil)
+                alert.addAction(action)
+                self.present(alert, animated: true)
+            }
+            
+            self.emptyToggle(isHidden: !self.cards.isEmpty)
+        }
+    }
+    
+    private func deleteCard(index: Int) {
+        cardService.delete(cardIdx: cards[index].cardIdx) { [weak self] response, error in
+            guard let self = self else { return }
+            guard let response = response else { return }
+            
+            if response.success {
+                self.hideMenuBar()
+                self.getVisibleCards()
+            } else {
+                let alert = UIAlertController(title: "삭제 실패", message: response.message, preferredStyle: .alert)
+                let action = UIAlertAction(title: "확인", style: .default)
+                alert.addAction(action)
+                self.present(alert, animated: true)
+            }
+        }
+    }
 }
 
 // MARK: Extension
 extension PreviewView: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard !synthesizer.isSpeaking && !player.isPlaying else { return }
-        
+        showMenuBar()
         if prevCell != nil { prevCell?.layer.borderWidth = 0 }
+        selectedIndex = indexPath.row
         
         let cell = collectionView.cellForItem(at: indexPath) as! HomeCardCell
         cell.layer.borderColor = UIColor.highlight.cgColor

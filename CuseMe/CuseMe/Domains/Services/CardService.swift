@@ -55,6 +55,8 @@ class CardService: APIManager, Requestable {
         }
     }
     
+    
+    
     // 카드 사용 빈도 증가
     func increaseCount(cardIdx: Int, completion: @escaping (ResponseMessage?, Error?) -> Void) {
         
@@ -129,14 +131,14 @@ class CardService: APIManager, Requestable {
     }
     
     func update(cardIdx: Int, isHidden: Bool, completion: @escaping (ResponseMessage?, Error?) -> Void) {
-        let url = Self.setURL("/cards/\(cardIdx)")
+        let url = Self.setURL("/cards/\(cardIdx)/hide")
         let token = UserDefaults.standard.string(forKey: "token") ?? ""
         let header: HTTPHeaders = [
             "Content-Type": "application/json",
             "token": "\(token)"
         ]
         let body: Parameters = [
-            "visible": "\(isHidden)"
+            "flag": "\(isHidden)"
         ]
         
         putable(url: url, type: ResponseMessage.self, body: body, header: header) {

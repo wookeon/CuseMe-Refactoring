@@ -17,7 +17,6 @@ class ManageView: UIViewController {
     private var cards = [Card]()
     private var searchResult = [Card]()
     private var prevCell: ManageCardCell?
-    private var selectedIndex: Int?
     private var prevOrderButton: UIButton?
     
     // MARK: Lifecycle
@@ -76,7 +75,6 @@ class ManageView: UIViewController {
     
     @IBAction func orderButtonDidTap(_ sender: UIButton) {
         sender.isSelected.toggle()
-        hidePopUpView()
         if prevOrderButton != nil {
             prevOrderButton?.isSelected.toggle()
             prevOrderButton?.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .regular)
@@ -95,47 +93,7 @@ class ManageView: UIViewController {
     }
     
     
-    @IBAction func popUpViewButtonDidTap(_ sender: UIButton) {
-        guard let index = selectedIndex else { return }
-        if sender.tag == 0 {
-            let alert = UIAlertController(title: "카드 삭제", message: "정말로 삭제하시겠습니까?", preferredStyle: .alert)
-            let cancel = UIAlertAction(title: "취소", style: .cancel)
-            let ok = UIAlertAction(title: "삭제", style: .destructive) { _ in
-                self.deleteCard(index: index)
-            }
-            [cancel, ok].forEach {
-                alert.addAction($0)
-            }
-            present(alert, animated: true)
-        } else if sender.tag == 1 { // TODO: API 만들어지면 테스트
-            prevCell?.visibleButton.isSelected.toggle()
-            cards[index].visible.toggle()
-            
-            cardService.update(cardIdx: cards[index].cardIdx, isHidden: (prevCell?.visibleButton.isSelected)!) {
-                [weak self] response, error in
-                guard let self = self else { return }
-                guard let response = response else { return }
-                
-                if response.success {
-                    self.getCards()
-                } else {
-                    let alert = UIAlertController(title: "변경 실패", message: response.message, preferredStyle: .alert)
-                    let action = UIAlertAction(title: "확인", style: .default)
-                    alert.addAction(action)
-                    self.present(alert, animated: true)
-                }
-            }
-        } else if sender.tag == 2 {
-            let dvc = UIStoryboard(name: "Detail", bundle: nil).instantiateViewController(withIdentifier: "CreateView") as! CreateView
-            //dvc.card = cards[index]
-            //dvc.task = "수정"
-            dvc.modalPresentationStyle = .fullScreen
-            present(dvc, animated: true)
-            
-        } else if sender.tag == 3 {
-            hidePopUpView()
-        }
-    }
+    
     
     // MARK: IBOutlets
     @IBOutlet private weak var topView: UIView!
@@ -148,8 +106,6 @@ class ManageView: UIViewController {
     @IBOutlet private weak var orderByVisibleButton: UIButton!
     @IBOutlet private weak var orderByCountButton: UIButton!
     @IBOutlet private weak var orderByNameButton: UIButton!
-    @IBOutlet private weak var popUpView: UIView!
-    @IBOutlet private weak var popUpViewBottomConstraint: NSLayoutConstraint!
     
     // MARK: UI
     private let dotIndicator = UIView().then {
@@ -159,21 +115,6 @@ class ManageView: UIViewController {
     }
     
     // MARK: Functions
-    private func showPopUpView() {
-        (tabBarController as! AdminTabBarController).tabBar.isHidden = true
-        (tabBarController as! AdminTabBarController).menuButton.isHidden = true
-        let gap = 83 - (self.tabBarController?.tabBar.frame.height)!
-        self.popUpViewBottomConstraint.constant = -gap
-    }
-    
-    private func hidePopUpView() {
-        if prevCell != nil { prevCell?.layer.borderWidth = 0 }
-        prevCell = nil
-        popUpViewBottomConstraint.constant = -83
-        (tabBarController as! AdminTabBarController).tabBar.isHidden = false
-        (tabBarController as! AdminTabBarController).menuButton.isHidden = false
-    }
-    
     private func getCards() {
         cardService.cards() { [weak self] response, error in
             guard let self = self else { return }
@@ -184,23 +125,6 @@ class ManageView: UIViewController {
                 self.cardCollectionView.reloadData()
             } else {
                 
-            }
-        }
-    }
-    
-    private func deleteCard(index: Int) {
-        cardService.delete(cardIdx: cards[index].cardIdx) { [weak self] response, error in
-            guard let self = self else { return }
-            guard let response = response else { return }
-            
-            if response.success {
-                self.hidePopUpView()
-                self.getCards()
-            } else {
-                let alert = UIAlertController(title: "삭제 실패", message: response.message, preferredStyle: .alert)
-                let action = UIAlertAction(title: "확인", style: .default)
-                alert.addAction(action)
-                self.present(alert, animated: true)
             }
         }
     }
@@ -223,14 +147,12 @@ extension ManageView: UICollectionViewDelegate {
         let cell = collectionView.cellForItem(at: indexPath) as! ManageCardCell
         cell.layer.borderColor = UIColor.highlight.cgColor
         cell.layer.borderWidth = 1.0
-        showPopUpView()
-    
-        selectedIndex = indexPath.row
         
         prevCell = cell
     }
 }
 
+// MARK: Extension
 extension ManageView: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width = (UIScreen.main.bounds.width-61)/2
