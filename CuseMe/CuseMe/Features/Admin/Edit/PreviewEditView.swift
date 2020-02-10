@@ -54,7 +54,7 @@ class PreviewEditView: UIViewController {
         
         cards = cards.map {
             var card = $0
-            card.isSelected = false
+            card.isSelected = sender.isSelected
             return card
         }
         
@@ -63,20 +63,20 @@ class PreviewEditView: UIViewController {
     }
     
     @IBAction func hideButtonDidTap(_ sender: UIButton) {
-        for index in 0..<cards.count {
-            cards[index].visible = false
-        }
-        
         cards = cards.map {
             var card = $0
-            card.visible = false
+            if card.isSelected {
+                card.visible = false
+            }
             return card
         }
+        
+        cardCollectionView.reloadData()
     }
     
     // MARK: IBOutlets
-    @IBOutlet weak var cardCollectionView: UICollectionView!
-    @IBOutlet weak var hideButton: UIButton!
+    @IBOutlet private weak var cardCollectionView: UICollectionView!
+    @IBOutlet private weak var hideButton: UIButton!
     
     // MARK: Functions
     private func shouldHiddenHideButton() -> Bool {
@@ -107,6 +107,7 @@ extension PreviewEditView: UICollectionViewDelegate {
         
         cell.selectButton.isSelected.toggle()
         cards[indexPath.row].isSelected = cell.selectButton.isSelected
+        
         hideButton.isHidden = shouldHiddenHideButton()
     }
 }
