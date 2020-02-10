@@ -17,45 +17,45 @@ class PreviewEditView: UIViewController {
     // MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-
         cardCollectionView.delegate = self
         cardCollectionView.dataSource = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
     }
     
     override func updateViewConstraints() {
         super.updateViewConstraints()
-        
         hideButton.cornerRadius(cornerRadii: nil)
         hideButton.shadows(x: 0, y: 0, color: UIColor.black, opacity: 0.16, blur: 6)
+    }
+    
+    deinit {
+        print("\(self) : deinit")
     }
 
     // MARK: IBActions
     @IBAction func closeButtonDidTap(_ sender: Any) {
-        // TODO: 카드 수정 로직 완성
-        // TODO: 드래그 앤 드롭으로 카드 위치 수정
-        cardService.editCards(cards: cards) { [weak self] response, error in
-            guard let self = self else { return }
-            guard let response = response else { return }
-            print(response)
-            if response.success {
-                self.dismiss(animated: true)
-            } else {
-                
-            }
-            
+        let alert = UIAlertController(title: "편집 완료", message: "변경 내용을 저장하시겠습니까?", preferredStyle: .alert)
+        let cancel = UIAlertAction(title: "저장 안함", style: .cancel) { _ in
+            self.dismiss(animated: true)
         }
+        let ok = UIAlertAction(title: "저장", style: .destructive) { _ in
+            self.updateCards()
+            self.dismiss(animated: true)
+        }
+        [cancel, ok].forEach { alert.addAction($0) }
+        present(alert, animated: true)
     }
     
     @IBAction func AllButtonDidTap(_ sender: UIButton) {
         sender.isSelected.toggle()
         
-        for index in 0..<cards.count {
-            cards[index].isSelected = sender.isSelected
+        cards = cards.map {
+            var card = $0
+            card.isSelected = false
+            return card
         }
         
         hideButton.isHidden = shouldHiddenHideButton()
@@ -63,7 +63,15 @@ class PreviewEditView: UIViewController {
     }
     
     @IBAction func hideButtonDidTap(_ sender: UIButton) {
+        for index in 0..<cards.count {
+            cards[index].visible = false
+        }
         
+        cards = cards.map {
+            var card = $0
+            card.visible = false
+            return card
+        }
     }
     
     // MARK: IBOutlets
@@ -76,6 +84,19 @@ class PreviewEditView: UIViewController {
         
         if items.isEmpty { return true }
         else { return false }
+    }
+    
+    private func updateCards() {
+        cardService.update(cards: cards) { [weak self] response, error in
+            guard let self = self else { return }
+            guard let response = response else { return }
+            print(response)
+            if response.success {
+                self.dismiss(animated: true)
+            } else {
+                
+            }
+        }
     }
 }
 

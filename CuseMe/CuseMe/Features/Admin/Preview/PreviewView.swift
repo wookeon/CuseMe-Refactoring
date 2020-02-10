@@ -65,6 +65,10 @@ class PreviewView: UIViewController {
         }
     }
     
+    deinit {
+        print("\(self) : deinit")
+    }
+    
     // MARK: IBActions
     @IBAction private func doneButtonDidTap(_ sender: UIButton) {
         dismiss(animated: true)
@@ -92,7 +96,7 @@ class PreviewView: UIViewController {
             present(alert, animated: true)
         } else if sender.tag == 1 {
             cards[index].visible.toggle()
-            cardService.update(cardIdx: cards[index].cardIdx, isHidden: false) {
+            cardService.update(cardIdx: cards[index].cardIdx, isVisible: false) {
                 [weak self] response, error in
                 guard let self = self else { return }
                 guard let response = response else { return }

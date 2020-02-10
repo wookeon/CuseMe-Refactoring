@@ -8,7 +8,7 @@
 
 struct Card: Codable {
     let userIdx: Int?
-    var cardIdx: Int
+    let cardIdx: Int
     let title: String
     let content: String
     let imageURL: String

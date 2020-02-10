@@ -32,6 +32,10 @@ class DownloadView: UIViewController {
         downloadButton.shadows(x: 2, y: 3, color: UIColor.highlight, opacity: 0.53, blur: 7)
     }
     
+    deinit {
+        print("\(self) : deinit")
+    }
+    
     // MARK: IBActions
     @IBAction func downloadButtonDidTap(_ sender: Any) {
         guard let serialNumber = serialNumberTextField.text else { return }

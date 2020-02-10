@@ -13,7 +13,6 @@ import SnapKit
 import Then
 import UIKit
 
-
 class HomeView: UIViewController {
     // MARK: Variable
     private var player = AVPlayer()
@@ -82,6 +81,10 @@ class HomeView: UIViewController {
             $0.height.equalTo(self.view.snp.height).multipliedBy(0.1)
             $0.topMargin.equalTo(emptyImageView.snp.bottom).offset(16)
         }
+    }
+    
+    deinit {
+        print("\(self) : deinit")
     }
     
     // MARK: IBActions

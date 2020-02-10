@@ -11,8 +11,10 @@ import SwiftKeychainWrapper
 
 class SplashView: UIViewController {
     
-    let authService = AuthService()
+    // MARK: Variable
+    private let authService = AuthService()
 
+    // MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -20,11 +22,15 @@ class SplashView: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
         auth()
     }
     
-    func auth() {
+    deinit {
+        print("\(self) : deinit")
+    }
+    
+    // MARK: Function
+    private func auth() {
         if let retrievedString = KeychainWrapper.standard.string(forKey: "uuid") {
             print("Retrieved : \(retrievedString)")
         } else {

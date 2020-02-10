@@ -77,7 +77,7 @@ class CardService: APIManager, Requestable {
     }
     
     // 카드 전체 수정
-    func editCards(cards: [Card], completion: @escaping (ResponseArray<EditCard>?, Error?) -> Void) {
+    func update(cards: [Card], completion: @escaping (ResponseArray<EditCard>?, Error?) -> Void) {
         
         let url = Self.setURL("/cards")
         let token = UserDefaults.standard.string(forKey: "token") ?? ""
@@ -122,7 +122,8 @@ class CardService: APIManager, Requestable {
         }
     }
     
-    func update(cardIdx: Int, isHidden: Bool, completion: @escaping (ResponseMessage?, Error?) -> Void) {
+    // 카드 숨김 상태 변경
+    func update(cardIdx: Int, isVisible: Bool, completion: @escaping (ResponseMessage?, Error?) -> Void) {
         let url = Self.setURL("/cards/\(cardIdx)/hide")
         let token = UserDefaults.standard.string(forKey: "token") ?? ""
         let header: HTTPHeaders = [
@@ -130,7 +131,7 @@ class CardService: APIManager, Requestable {
             "token": "\(token)"
         ]
         let body: Parameters = [
-            "flag": "\(isHidden)"
+            "isVisible": "\(isVisible)"
         ]
         
         putable(url: url, type: ResponseMessage.self, body: body, header: header) {

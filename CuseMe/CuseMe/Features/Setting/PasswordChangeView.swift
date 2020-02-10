@@ -32,6 +32,10 @@ class PasswordChangeView: UIViewController {
         changeButton.shadows(x: 2, y: 3, color: UIColor.highlight, opacity: 0.53, blur: 7)
     }
     
+    deinit {
+        print("\(self) : deinit")
+    }
+    
     // MARK: IBActions
     @IBAction private func closeButtonDidTap(_ sender: UIButton) {
         dismiss(animated: true)

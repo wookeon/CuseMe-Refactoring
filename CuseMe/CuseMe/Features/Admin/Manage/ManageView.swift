@@ -62,6 +62,10 @@ class ManageView: UIViewController {
         prevOrderButton = orderByVisibleButton
     }
     
+    deinit {
+        print("\(self) : deinit")
+    }
+    
     // MARK: IBActions
     @IBAction private func doneButton(_ sender: Any) {
         dismiss(animated: true)
