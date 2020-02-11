@@ -11,11 +11,6 @@ import Then
 import SnapKit
 
 class AdminTabBarController: UITabBarController {
-    
-    // MARK: Variable
-    private let screenWidth = UIScreen.main.bounds.width
-    private let screenHeight = UIScreen.main.bounds.height
-
     // MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
