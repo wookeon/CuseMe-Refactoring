@@ -8,6 +8,7 @@
 
 import UIKit
 import Then
+import SnapKit
 
 class AdminTabBarController: UITabBarController {
     
@@ -15,6 +16,7 @@ class AdminTabBarController: UITabBarController {
     private let screenWidth = UIScreen.main.bounds.width
     private let screenHeight = UIScreen.main.bounds.height
     
+
     // MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,33 +25,41 @@ class AdminTabBarController: UITabBarController {
     override func updateViewConstraints() {
         super.updateViewConstraints()
         
-        [blurView, menuButton, createButton, createLabel, downloadButton, downloadLabel].forEach { view.addSubview($0) }
+        [blurView, menuButton, createButton, createLabel, downloadButton, downloadLabel].forEach {
+            view.addSubview($0)
+        }
         [menuButton, createButton, downloadButton].forEach { $0.size(width: 58, height: 58) }
         [createLabel, downloadLabel].forEach { $0.size(width: 65, height: 15) }
 
-        blurView.origin(x: 0, y: 0)
-        blurView.size(width: screenWidth, height: screenHeight)
+        blurView.snp.makeConstraints {
+            $0.top.leading.trailing.bottom.equalTo(view)
+        }
         blurView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(blurViewDidTap)))
-
-        let menuButtonOriginX = screenWidth/2 - menuButton.frame.width/2
-        let menuButtonOriginY = screenHeight - tabBar.frame.height - 19
-        menuButton.origin(x: menuButtonOriginX, y: menuButtonOriginY)
         
-        let createButtonOriginX = screenWidth/2 - menuButton.frame.width/2
-        let createButtonOriginY = menuButton.frame.origin.y - menuButton.frame.height
-        createButton.origin(x: createButtonOriginX, y: createButtonOriginY)
+        menuButton.snp.makeConstraints {
+            $0.centerX.equalTo(view.snp.centerX)
+            $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(-12)
+        }
         
-        let createLabelOriginX = createButton.frame.origin.x + createButton.frame.width + 10
-        let createLabelOriginY = createButton.frame.origin.y + createButton.frame.height/2 - 8
-        createLabel.origin(x: createLabelOriginX, y: createLabelOriginY)
+        createButton.snp.makeConstraints {
+            $0.centerX.equalTo(view.snp.centerX)
+            $0.bottom.equalTo(menuButton.snp.top)
+        }
         
-        let downloadButtonOriginX = screenWidth/2 - menuButton.frame.width/2
-        let downloadButtonOriginY = createButton.frame.origin.y - menuButton.frame.height - 6
-        downloadButton.origin(x: downloadButtonOriginX, y: downloadButtonOriginY)
+        createLabel.snp.makeConstraints {
+            $0.leading.equalTo(createButton.snp.trailing).offset(10)
+            $0.centerY.equalTo(createButton.snp.centerY)
+        }
         
-        let downloadLabelOriginX = downloadButton.frame.origin.x + downloadButton.frame.width + 10
-        let downloadLabelOriginY = downloadButton.frame.origin.y + downloadButton.frame.height/2 - 8
-        downloadLabel.origin(x: downloadLabelOriginX, y: downloadLabelOriginY)
+        downloadButton.snp.makeConstraints {
+            $0.centerX.equalTo(view.snp.centerX)
+            $0.bottom.equalTo(createButton.snp.top).offset(-6)
+        }
+        
+        downloadLabel.snp.makeConstraints {
+            $0.leading.equalTo(downloadButton.snp.trailing).offset(10)
+            $0.centerY.equalTo(downloadButton.snp.centerY)
+        }
     }
     
     // MARK: @objc

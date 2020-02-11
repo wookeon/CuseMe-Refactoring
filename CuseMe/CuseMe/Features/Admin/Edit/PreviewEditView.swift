@@ -62,6 +62,7 @@ class PreviewEditView: UIViewController {
         cardCollectionView.reloadData()
     }
     
+    // TODO: 숨기기
     @IBAction func hideButtonDidTap(_ sender: UIButton) {
         cards = cards.map {
             var card = $0
@@ -71,6 +72,7 @@ class PreviewEditView: UIViewController {
             return card
         }
         
+        updateCards()
         cardCollectionView.reloadData()
     }
     
@@ -144,7 +146,6 @@ extension PreviewEditView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PreviewEditCardCell", for: indexPath) as! PreviewEditCardCell
         let card = cards[indexPath.row]
-        
         cell.store(card)
         
         return cell
