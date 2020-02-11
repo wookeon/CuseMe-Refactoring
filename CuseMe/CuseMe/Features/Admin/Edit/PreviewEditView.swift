@@ -11,7 +11,8 @@ import UIKit
 class PreviewEditView: UIViewController {
     
     // MARK: Variable
-    var cards = [Card]()
+    var originCards = [Card]()
+    var visibleCards = [Card]()
     private var cardService = CardService()
     
     // MARK: Lifecycle
@@ -52,7 +53,7 @@ class PreviewEditView: UIViewController {
     @IBAction func AllButtonDidTap(_ sender: UIButton) {
         sender.isSelected.toggle()
         
-        cards = cards.map {
+        visibleCards = visibleCards.map {
             var card = $0
             card.isSelected = sender.isSelected
             return card
@@ -64,15 +65,16 @@ class PreviewEditView: UIViewController {
     
     // TODO: 숨기기
     @IBAction func hideButtonDidTap(_ sender: UIButton) {
-        cards = cards.map {
+        originCards = visibleCards.map {
             var card = $0
             if card.isSelected {
                 card.visible = false
             }
             return card
         }
+        visibleCards = visibleCards.filter { $0.isSelected != true }
         
-        updateCards()
+        hideButton.isHidden = true
         cardCollectionView.reloadData()
     }
     
@@ -82,14 +84,14 @@ class PreviewEditView: UIViewController {
     
     // MARK: Functions
     private func shouldHiddenHideButton() -> Bool {
-        let items = cards.filter { $0.isSelected == true }
+        let items = visibleCards.filter { $0.isSelected == true }
         
         if items.isEmpty { return true }
         else { return false }
     }
     
     private func updateCards() {
-        cardService.update(cards: cards) { [weak self] response, error in
+        cardService.update(cards: originCards) { [weak self] response, error in
             guard let self = self else { return }
             guard let response = response else { return }
             print(response)
@@ -108,7 +110,7 @@ extension PreviewEditView: UICollectionViewDelegate {
         let cell = collectionView.cellForItem(at: indexPath) as! PreviewEditCardCell
         
         cell.selectButton.isSelected.toggle()
-        cards[indexPath.row].isSelected = cell.selectButton.isSelected
+        visibleCards[indexPath.row].isSelected = cell.selectButton.isSelected
         
         hideButton.isHidden = shouldHiddenHideButton()
     }
@@ -140,12 +142,12 @@ extension PreviewEditView: UICollectionViewDelegateFlowLayout {
 
 extension PreviewEditView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return cards.count
+        return visibleCards.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PreviewEditCardCell", for: indexPath) as! PreviewEditCardCell
-        let card = cards[indexPath.row]
+        let card = visibleCards[indexPath.row]
         cell.store(card)
         
         return cell

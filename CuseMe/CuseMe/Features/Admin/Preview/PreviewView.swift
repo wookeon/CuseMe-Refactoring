@@ -78,7 +78,8 @@ class PreviewView: UIViewController {
         let dvc = UIStoryboard(name: "Admin", bundle: nil).instantiateViewController(withIdentifier: "PreviewEditView") as! PreviewEditView
         dvc.modalPresentationStyle = .fullScreen
         // TODO: delegate 로 다음 뷰에 전달
-        dvc.cards = cards
+        dvc.originCards = cards
+        dvc.visibleCards = cards
         self.present(dvc, animated: true)
     }
     

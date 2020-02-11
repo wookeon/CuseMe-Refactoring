@@ -10,7 +10,8 @@ import UIKit
 import Then
 import SnapKit
 
-class AdminTabBarController: UITabBarController {
+final class AdminTabBarController: UITabBarController {
+    
     // MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()

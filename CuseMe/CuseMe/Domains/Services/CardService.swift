@@ -77,7 +77,7 @@ class CardService: APIManager, Requestable {
     }
     
     // 카드 전체 수정
-    func update(cards: [Card], completion: @escaping (ResponseArray<EditCard>?, Error?) -> Void) {
+    func update(cards: [Card], completion: @escaping (ResponseMessage?, Error?) -> Void) {
         
         let url = Self.setURL("/cards")
         let token = UserDefaults.standard.string(forKey: "token") ?? ""
@@ -90,7 +90,7 @@ class CardService: APIManager, Requestable {
             "updateArr": cards
         ]
         
-        putable(url: url, type: ResponseArray<EditCard>.self, body: body, header: header) {
+        putable(url: url, type: ResponseMessage.self, body: body, header: header) {
             (response, error) in
             
             if response != nil {
