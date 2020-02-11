@@ -15,7 +15,6 @@ class AdminTabBarController: UITabBarController {
     // MARK: Variable
     private let screenWidth = UIScreen.main.bounds.width
     private let screenHeight = UIScreen.main.bounds.height
-    
 
     // MARK: Lifecycle
     override func viewDidLoad() {
@@ -32,33 +31,33 @@ class AdminTabBarController: UITabBarController {
         [createLabel, downloadLabel].forEach { $0.size(width: 65, height: 15) }
 
         blurView.snp.makeConstraints {
-            $0.top.leading.trailing.bottom.equalTo(view)
+            $0.top.left.right.bottom.equalToSuperview()
         }
         blurView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(blurViewDidTap)))
         
         menuButton.snp.makeConstraints {
-            $0.centerX.equalTo(view.snp.centerX)
+            $0.centerX.equalToSuperview()
             $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(-12)
         }
         
         createButton.snp.makeConstraints {
-            $0.centerX.equalTo(view.snp.centerX)
+            $0.centerX.equalToSuperview()
             $0.bottom.equalTo(menuButton.snp.top)
         }
         
         createLabel.snp.makeConstraints {
             $0.leading.equalTo(createButton.snp.trailing).offset(10)
-            $0.centerY.equalTo(createButton.snp.centerY)
+            $0.centerY.equalTo(createButton)
         }
         
         downloadButton.snp.makeConstraints {
-            $0.centerX.equalTo(view.snp.centerX)
+            $0.centerX.equalToSuperview()
             $0.bottom.equalTo(createButton.snp.top).offset(-6)
         }
         
         downloadLabel.snp.makeConstraints {
             $0.leading.equalTo(downloadButton.snp.trailing).offset(10)
-            $0.centerY.equalTo(downloadButton.snp.centerY)
+            $0.centerY.equalTo(downloadButton)
         }
     }
     
