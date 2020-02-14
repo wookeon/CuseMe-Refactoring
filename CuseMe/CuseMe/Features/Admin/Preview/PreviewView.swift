@@ -74,12 +74,9 @@ class PreviewView: UIViewController {
         dismiss(animated: true)
     }
     
-    @IBAction func editButtonDidTap(_ sender: UIButton) {
+    @IBAction func editButtonDidTap(_ sender: UIButton) { 
         let dvc = UIStoryboard(name: "Admin", bundle: nil).instantiateViewController(withIdentifier: "PreviewEditView") as! PreviewEditView
         dvc.modalPresentationStyle = .fullScreen
-        // TODO: delegate 로 다음 뷰에 전달
-        dvc.originCards = cards
-        dvc.visibleCards = cards
         self.present(dvc, animated: true)
     }
     

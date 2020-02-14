@@ -59,13 +59,15 @@ class CardService: APIManager, Requestable {
     func increaseCount(cardIdx: Int, completion: @escaping (ResponseMessage?, Error?) -> Void) {
         
         let url = Self.setURL("/cards/\(cardIdx)/count")
-        let token = UserDefaults.standard.string(forKey: "token") ?? ""
+        let uuid = KeychainWrapper.standard.string(forKey: "uuid") ?? ""
         let header: HTTPHeaders = [
             "Content-Type" : "application/json",
-            "token" : "\(token)"
+        ]
+        let body: Parameters = [
+            "uuid": "\(uuid)"
         ]
         
-        putable(url: url, type: ResponseMessage.self, body: nil, header: header) {
+        putable(url: url, type: ResponseMessage.self, body: body, header: header) {
             (response, error) in
             
             if response != nil {

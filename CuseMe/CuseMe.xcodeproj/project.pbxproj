@@ -41,7 +41,6 @@
 		F5129E1423E7ED370069C754 /* Splash.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F5129E1323E7ED370069C754 /* Splash.storyboard */; };
 		F5129E1623E7EDE90069C754 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5129E1523E7EDE90069C754 /* SplashView.swift */; };
 		F528474523EC083B0081FA78 /* PasswordChangeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F528474423EC083B0081FA78 /* PasswordChangeView.swift */; };
-		F580168C23E9B771002EC129 /* EditCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F580168B23E9B771002EC129 /* EditCard.swift */; };
 		F580169023EA59BE002EC129 /* ManageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F580168F23EA59BE002EC129 /* ManageView.swift */; };
 		F580169223EA5B3F002EC129 /* ManageCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F580169123EA5B3F002EC129 /* ManageCardCell.swift */; };
 		F58F7A4723E94BC5004F82D6 /* SendDataDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F58F7A4623E94BC5004F82D6 /* SendDataDelegate.swift */; };
@@ -84,7 +83,6 @@
 		F5129E1323E7ED370069C754 /* Splash.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Splash.storyboard; sourceTree = "<group>"; };
 		F5129E1523E7EDE90069C754 /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
 		F528474423EC083B0081FA78 /* PasswordChangeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordChangeView.swift; sourceTree = "<group>"; };
-		F580168B23E9B771002EC129 /* EditCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCard.swift; sourceTree = "<group>"; };
 		F580168F23EA59BE002EC129 /* ManageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageView.swift; sourceTree = "<group>"; };
 		F580169123EA5B3F002EC129 /* ManageCardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageCardCell.swift; sourceTree = "<group>"; };
 		F58F7A4623E94BC5004F82D6 /* SendDataDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendDataDelegate.swift; sourceTree = "<group>"; };
@@ -157,7 +155,6 @@
 				F50C473B23E7EF6C00905E6F /* ResponseObject.swift */,
 				F50C473D23E7EF7700905E6F /* ResponseArray.swift */,
 				F50C473F23E7EFAE00905E6F /* Card.swift */,
-				F580168B23E9B771002EC129 /* EditCard.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -455,7 +452,6 @@
 				F50C473A23E7EF5E00905E6F /* ResponseMessage.swift in Sources */,
 				F50C474023E7EFAE00905E6F /* Card.swift in Sources */,
 				F50C477123E92E9600905E6F /* PreviewEditView.swift in Sources */,
-				F580168C23E9B771002EC129 /* EditCard.swift in Sources */,
 				F50C474623E7F01900905E6F /* Requestable.swift in Sources */,
 				F50C475223E7FC8700905E6F /* UIView+Extensions.swift in Sources */,
 				F50C476823E8587600905E6F /* AdminTabBarController.swift in Sources */,
