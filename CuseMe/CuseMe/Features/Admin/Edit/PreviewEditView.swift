@@ -11,7 +11,7 @@ import UIKit
 class PreviewEditView: UIViewController {
     
     // MARK: Variable
-    var cards = [Card]()
+    private var cards = [Card]()
     private var cardService = CardService()
     private var isChanged = false
     

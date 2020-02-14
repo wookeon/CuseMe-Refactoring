@@ -93,7 +93,7 @@ class PreviewView: UIViewController {
             }
             present(alert, animated: true)
         } else if sender.tag == 1 {
-            cards[index].visible.toggle()
+            cards[index].visible = false
             cardService.update(cardIdx: cards[index].cardIdx, isVisible: false) {
                 [weak self] response, error in
                 guard let self = self else { return }
@@ -114,9 +114,10 @@ class PreviewView: UIViewController {
             //dvc.task = "수정"
             dvc.modalPresentationStyle = .fullScreen
             present(dvc, animated: true)
-        } else if sender.tag == 3 {
-            hideMenuBar()
         }
+        synthesizer.stopSpeaking(at: .immediate)
+        player.pause()
+        hideMenuBar()
     }
     
     // MARK: IBOutlets

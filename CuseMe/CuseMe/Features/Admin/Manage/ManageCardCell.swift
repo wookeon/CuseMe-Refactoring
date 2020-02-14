@@ -10,6 +10,10 @@ import UIKit
 
 class ManageCardCell: UICollectionViewCell {
     
+    // MARK: Variable
+    private var cardService = CardService()
+    private var cardIdx: Int?
+    
     // MARK: Lifecycle
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -19,14 +23,33 @@ class ManageCardCell: UICollectionViewCell {
         self.contentView.cornerRadius(parts: .allCorners, cornerRadii: 10)
     }
     
-    // MARK: IBOutlets
-    @IBOutlet weak var cardImageView: UIImageView!
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var visibleButton: UIButton!
+    // MARK: IBAction
+    @IBAction private func visibleButtonDidTap(_ sender: UIButton) {
+        guard let index = cardIdx else { return }
+        sender.isSelected.toggle()
+        print(sender.isSelected)
+        cardService.update(cardIdx: index, isVisible: visibleButton.isSelected) {
+            response, error in
+            guard let response = response else { return }
+            
+            print(response)
+            if response.success {
+                
+            } else {
+                
+            }
+        }
+    }
     
-    // MARK: Functions
+    // MARK: IBOutlet
+    @IBOutlet private weak var cardImageView: UIImageView!
+    @IBOutlet private weak var titleLabel: UILabel!
+    @IBOutlet private weak var visibleButton: UIButton!
+    
+    // MARK: Function
     func store(_ card: Card) {
         let imageURL = URL(string: card.imageURL)
+        self.cardIdx = card.cardIdx
         self.cardImageView.kf.setImage(with: imageURL)
         self.titleLabel.text = card.title
         self.visibleButton.isSelected = card.visible

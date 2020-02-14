@@ -96,9 +96,6 @@ class ManageView: UIViewController {
         prevOrderButton = sender
     }
     
-    
-    
-    
     // MARK: IBOutlets
     @IBOutlet private weak var topView: UIView!
     @IBOutlet private weak var topContentView: UIView!
