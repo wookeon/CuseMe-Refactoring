@@ -154,6 +154,7 @@
                             </collectionView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="VtD-cD-TT4" firstAttribute="trailing" secondItem="cJz-9X-aB3" secondAttribute="trailing" id="4su-44-sMc"/>
                             <constraint firstItem="jbW-1H-05b" firstAttribute="top" secondItem="cJz-9X-aB3" secondAttribute="bottom" constant="-25" id="57v-4X-Pl6"/>

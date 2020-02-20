@@ -21,4 +21,12 @@ extension UIColor {
     @nonobjc class var blur: UIColor {
         return UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 0.8)
     }
+    
+    @nonobjc class var cover: UIColor {
+        return UIColor(red: 242/255, green: 242/255, blue: 242/255, alpha: 1.0)
+    }
+    
+    @nonobjc class var normal: UIColor {
+        return UIColor(red: 77/255, green: 77/255, blue: 77/255, alpha: 1.0)
+    }
 }

@@ -40,6 +40,7 @@ class ManageView: UIViewController {
             } else {
                 
             }
+            self.emptyToggle(isHidden: self.cards.isEmpty)
         }
     }
     
@@ -49,7 +50,6 @@ class ManageView: UIViewController {
         doneButton.cornerRadius(cornerRadii: nil)
         topView.cornerRadius(cornerRadii: 10)
         topView.shadows(x: 0, y: 3, color: UIColor.black, opacity: 0.05, blur: 6)
-        topContentView.cornerRadius(parts: [.bottomLeft, .bottomRight], cornerRadii: 10)
         searchView.cornerRadius(cornerRadii: 10)
         searchView.layer.borderColor = UIColor.highlight.cgColor
         searchView.layer.borderWidth = 1.0
@@ -59,6 +59,20 @@ class ManageView: UIViewController {
             $0.centerX.equalTo(orderByVisibleButton.snp.centerX)
             $0.width.height.equalTo(6)
         }
+        [emptyImageView, emptyLabel].forEach { view.addSubview($0) }
+        emptyImageView.snp.makeConstraints {
+            $0.left.right.equalToSuperview().offset(38)
+            $0.height.equalTo(emptyImageView.snp.width)
+            $0.centerX.equalTo(self.view.snp.centerX)
+            $0.centerY.equalTo(cardCollectionView.snp.centerY).multipliedBy(0.8)
+        }
+        emptyLabel.snp.makeConstraints {
+            $0.centerX.equalTo(self.view.snp.centerX)
+            $0.width.equalTo(self.view.snp.width).multipliedBy(0.75)
+            $0.height.equalTo(self.view.snp.height).multipliedBy(0.1)
+            $0.topMargin.equalTo(emptyImageView.snp.bottom).offset(16)
+        }
+        
         prevOrderButton = orderByVisibleButton
     }
     
@@ -87,7 +101,7 @@ class ManageView: UIViewController {
             if sender.tag == 0 {
                 self.dotIndicator.transform = CGAffineTransform.identity
             } else {
-                self.dotIndicator.transform = CGAffineTransform(translationX: CGFloat(sender.tag)*UIScreen.main.bounds.width/3, y: 0)
+                self.dotIndicator.transform = CGAffineTransform(translationX: CGFloat(sender.tag)*(UIScreen.main.bounds.width-48)/3, y: 0)
             }
         })
         sender.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
@@ -98,7 +112,6 @@ class ManageView: UIViewController {
     
     // MARK: IBOutlets
     @IBOutlet private weak var topView: UIView!
-    @IBOutlet private weak var topContentView: UIView!
     @IBOutlet private weak var searchView: UIView!
     @IBOutlet private weak var searchTextField: UITextField!
     @IBOutlet private weak var orderStackView: UIStackView!
@@ -115,7 +128,28 @@ class ManageView: UIViewController {
         $0.backgroundColor = UIColor.highlight
     }
     
-    // MARK: Functions
+    private let emptyImageView = UIImageView().then {
+        $0.image = UIImage(named: "ManageCardEmptyImage")
+        $0.contentMode = .scaleAspectFit
+        $0.isHidden = true
+    }
+    
+    private let emptyLabel = UILabel().then {
+        $0.textAlignment = .center
+        $0.textColor = .placeholder
+        $0.numberOfLines = 2
+        $0.text = "카드를 만드려면\n하단의 +버튼을 누르세요."
+        $0.font = UIFont.systemFont(ofSize: 16, weight: .light)
+        $0.adjustsFontSizeToFitWidth = true
+        $0.isHidden = true
+    }
+    
+    // MARK: Function
+    private func emptyToggle(isHidden: Bool) {
+        emptyImageView.isHidden = isHidden
+        emptyLabel.isHidden = isHidden
+    }
+    
     private func getCards() {
         cardService.cards() { [weak self] response, error in
             guard let self = self else { return }

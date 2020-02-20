@@ -64,7 +64,6 @@ class HomeView: UIViewController {
     
     override func updateViewConstraints() {
         super.updateViewConstraints()
-        
         waveAnimationView.contentMode = .scaleToFill
         cardCollectionView.cornerRadius(cornerRadii: 20)
 

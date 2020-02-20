@@ -164,9 +164,9 @@ extension PreviewEditView: UICollectionViewDelegate {
     }
     
     func collectionView(_ collectionView: UICollectionView, moveItemAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-        isChanged = true
         let removed = cards.remove(at: sourceIndexPath.row)
         cards.insert(removed, at: destinationIndexPath.row)
+        isChanged = true
     }
 }
 

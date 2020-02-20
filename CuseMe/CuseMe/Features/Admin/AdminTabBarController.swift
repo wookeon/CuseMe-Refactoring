@@ -68,7 +68,6 @@ final class AdminTabBarController: UITabBarController {
     @objc private func subMenuButtonDidTap(_ sender: UIButton) {
         if sender.tag == 0 {
             let dvc = UIStoryboard(name: "Detail", bundle: nil).instantiateViewController(withIdentifier: "CreateView") as! CreateView
-            //dvc.task = "추가"
             dvc.modalPresentationStyle = .fullScreen
             present(dvc, animated: true)
         } else if sender.tag == 1 {
